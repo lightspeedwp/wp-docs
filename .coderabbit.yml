@@ -1,0 +1,16 @@
+reviews:
+  path_instructions:
+    - path: "**/*.md"
+      instructions: |
+        Review the Markdown documentation for:
+        - Clarity and conciseness of explanations
+        - Consistent formatting and heading structure
+        - Proper use of code blocks and inline code
+        - Correct spelling, grammar, and punctuation
+        - Accurate and up-to-date technical information
+        - Useful internal and external links
+        - Well-organized sections and logical flow
+        
+  Additional context:
+  - The repository contains documentation focused on block theme and block plug-in development topics for WordPress and related technologies.
+  - Please ensure that technical docs are developer-friendly, accurate, and up-to-date.
