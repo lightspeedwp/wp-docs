@@ -1,0 +1,17 @@
+{
+  "name": "wp-docs",
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": true,
+    "files.insertFinalNewline": true
+  },
+  "extensions": {
+    "recommendations": [
+      "editorconfig.editorconfig"
+    ]
+  }
+}
