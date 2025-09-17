@@ -15,7 +15,7 @@ A predictable, token-based system for **colours, spacing, and typography** helps
 * `neutral-0` → white
 * `neutral-100` → lightest grey
 * `neutral-200 … neutral-900` → progressively darker greys
-* `neutral-1000` → pure black
+* `neutral-900` → pure black
 
 ### Accent Scale
 
@@ -128,8 +128,8 @@ Perfect — let’s extend the **WordPress default font sizes** into a numeric s
     "typography": {
       "fontSizes": [
         { "slug": "font-size-100", "size": "0.75rem", "name": "Tiny" },
-        { "slug": "font-size-200", "size": "1rem",    "name": "Small" },
-        { "slug": "font-size-300", "size": "1.25rem", "name": "Base" },
+        { "slug": "font-size-200", "size": "1rem",    "name": "Base" },
+        { "slug": "font-size-300", "size": "1.25rem", "name": "Small" },
         { "slug": "font-size-400", "size": "1.5rem",  "name": "Medium" },
         { "slug": "font-size-500", "size": "2rem",    "name": "Large" },
         { "slug": "font-size-600", "size": "2.5rem",  "name": "X-Large" },
