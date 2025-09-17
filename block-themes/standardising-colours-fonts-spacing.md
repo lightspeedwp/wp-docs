@@ -46,9 +46,8 @@ A predictable, token-based system for **colours, spacing, and typography** helps
         { "slug": "neutral-500",  "name": "Neutral 500",  "color": "#9CA3AF" },
         { "slug": "neutral-600",  "name": "Neutral 600",  "color": "#6B7280" },
         { "slug": "neutral-700",  "name": "Neutral 700",  "color": "#4B5563" },
-        { "slug": "neutral-800",  "name": "Neutral 800",  "color": "#374151" },
-        { "slug": "neutral-900",  "name": "Neutral 900",  "color": "#1F2937" },
-        { "slug": "neutral-1000", "name": "Neutral 1000", "color": "#111111" },
+        { "slug": "neutral-800",  "name": "Neutral 800",  "color": "#1F2937" },
+        { "slug": "neutral-900",  "name": "Neutral 900",  "color": "#111111" },
 
         { "slug": "accent-100", "name": "Accent 100", "color": "#0A84FF" },
         { "slug": "accent-200", "name": "Accent 200", "color": "#3399FF" },
@@ -106,8 +105,8 @@ Perfect — let’s extend the **WordPress default font sizes** into a numeric s
 | Slug            | Label    | px size | rem (base 16px) |
 | --------------- | -------- | ------- | --------------- |
 | `font-size-100` | Tiny     | 12px    | 0.75rem         |
-| `font-size-200` | Small    | 16px    | 1rem            |
-| `font-size-300` | Base     | 20px    | 1.25rem         |
+| `font-size-200` | Base    | 16px    | 1rem            |
+| `font-size-300` | Small     | 20px    | 1.25rem         |
 | `font-size-400` | Medium   | 24px    | 1.5rem          |
 | `font-size-500` | Large    | 32px    | 2rem            |
 | `font-size-600` | X-Large  | 40px    | 2.5rem          |
