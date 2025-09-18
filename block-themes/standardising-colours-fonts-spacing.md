@@ -28,7 +28,7 @@ A predictable, token-based system for **colours, spacing, and typography** helps
 
 ```json
 {
-  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "$schema": "https://schemas.wp.org/wp/6.8/block.json",
   "version": 3,
   "settings": {
     "color": {
@@ -122,7 +122,7 @@ Perfect — let’s extend the **WordPress default font sizes** into a numeric s
 
 ```json
 {
-  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "$schema": "https://schemas.wp.org/wp/6.8/block.json",
   "version": 3,
   "settings": {
     "typography": {
