@@ -1,6 +1,7 @@
 ---
 description: 'AI-powered script generation guidelines'
 applyTo: '**/*.genai.*'
+license: 'GPL-3.0'
 ---
 
 ## Role

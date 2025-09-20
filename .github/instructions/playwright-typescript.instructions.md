@@ -1,6 +1,7 @@
 ---
 description: 'Playwright test generation instructions'
 applyTo: '**'
+license: 'GPL-3.0'
 ---
 
 ## Test Writing Guidelines

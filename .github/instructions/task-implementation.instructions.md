@@ -1,6 +1,7 @@
 ---
 applyTo: '**/.copilot-tracking/changes/*.md'
 description: 'Instructions for implementing task plans with progressive tracking and change record - Brought to you by microsoft/edge-ai'
+license: 'GPL-3.0'
 ---
 
 # Task Plan Implementation Instructions

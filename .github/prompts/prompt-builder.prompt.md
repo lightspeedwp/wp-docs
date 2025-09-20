@@ -2,6 +2,7 @@
 mode: 'agent'
 tools: ['codebase', 'editFiles', 'search']
 description: 'Guide users through creating high-quality GitHub Copilot prompts with proper structure, tools, and best practices.'
+license: 'GPL-3.0'
 ---
 
 # Professional Prompt Builder

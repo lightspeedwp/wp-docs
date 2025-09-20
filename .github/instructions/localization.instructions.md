@@ -1,6 +1,7 @@
 ---
 description: 'Guidelines for localizing markdown documents'
 applyTo: '**/*.md'
+license: 'GPL-3.0'
 ---
 
 # Guidance for Localization

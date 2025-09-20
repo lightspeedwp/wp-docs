@@ -2,6 +2,7 @@
 mode: 'agent'
 tools: ['changes','codebase', 'editFiles', 'findTestFiles', 'search', 'writeTest']
 description: 'Add new language to a Next.js + next-intl application'
+license: 'GPL-3.0'
 ---
 
 This is a guide to add a new language to a Next.js project using next-intl for internationalization,

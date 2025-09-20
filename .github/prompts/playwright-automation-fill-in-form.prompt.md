@@ -3,6 +3,7 @@ description: 'Automate filling in a form using Playwright MCP'
 mode: agent
 tools: ['playwright']
 model: 'Claude Sonnet 4'
+license: 'GPL-3.0'
 ---
 
 # Automating Filling in a Form with Playwright MCP

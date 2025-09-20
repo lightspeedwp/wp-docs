@@ -1,6 +1,7 @@
 ---
 mode: 'agent'
 description: 'Prompt for creating Product Requirements Documents (PRDs) for new features, based on an Epic.'
+license: 'GPL-3.0'
 ---
 
 # Feature PRD Prompt

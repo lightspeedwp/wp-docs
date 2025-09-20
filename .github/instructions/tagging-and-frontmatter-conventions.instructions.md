@@ -1,6 +1,7 @@
 ---
 description: 'Tagging and frontmatter conventions for Copilot assets (instructions, prompts, chat modes, collections)'
 applyTo: '**/*.md'
+license: 'GPL-3.0'
 ---
 
 # Tagging & Frontmatter Conventions

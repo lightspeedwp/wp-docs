@@ -1,6 +1,7 @@
 ---
 mode: 'agent'
 description: 'Create a README.md file for the project'
+license: 'GPL-3.0'
 ---
 
 ## Role

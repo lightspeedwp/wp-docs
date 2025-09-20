@@ -1,6 +1,7 @@
 ---
 description: "Prompt for generating an AGENTS.md file for a repository"
 mode: "agent"
+license: 'GPL-3.0'
 ---
 
 # Create high‑quality AGENTS.md file

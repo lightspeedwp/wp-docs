@@ -1,6 +1,7 @@
 ---
 description: 'Documentation and content creation standards'
 applyTo: '**/*.md'
+license: 'GPL-3.0'
 ---
 
 ## Markdown Content Rules

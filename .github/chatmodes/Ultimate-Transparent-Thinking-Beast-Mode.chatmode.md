@@ -1,4 +1,5 @@
 ---
+license: 'GPL-3.0'
 title: 'Ultimate Transparent Thinking Beast Mode'
 description: 'Ultimate Transparent Thinking Beast Mode'
 ---

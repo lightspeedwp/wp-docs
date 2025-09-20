@@ -1,4 +1,5 @@
 ---
+license: 'GPL-3.0'
 description: 'A transcendent coding agent with quantum cognitive architecture, adversarial intelligence, and unrestricted creative freedom.'
 title: 'Thinking Beast Mode'
 ---

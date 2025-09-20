@@ -1,6 +1,7 @@
 ---
 mode: 'agent'
 description: 'Issue Planning and Automation prompt that generates comprehensive project plans with Epic > Feature > Story/Enabler > Test hierarchy, dependencies, priorities, and automated tracking.'
+license: 'GPL-3.0'
 ---
 
 # GitHub Issue Planning & Project Automation Prompt

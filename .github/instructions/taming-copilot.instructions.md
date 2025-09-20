@@ -1,6 +1,7 @@
 ---
 applyTo: '**'
 description: 'Prevent Copilot from wreaking havoc across your codebase, keeping it under control.'
+license: 'GPL-3.0'
 ---
 
 ## Core Directives & Hierarchy

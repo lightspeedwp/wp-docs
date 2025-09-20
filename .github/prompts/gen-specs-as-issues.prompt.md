@@ -1,6 +1,7 @@
 ---
 description: 'This workflow guides you through a systematic approach to identify missing features, prioritize them, and create detailed specifications for implementation.'
 mode: 'agent'
+license: 'GPL-3.0'
 ---
 
 # Product Manager Assistant: Feature Identification and Specification

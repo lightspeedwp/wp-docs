@@ -2,6 +2,7 @@
 mode: 'agent'
 description: 'Update existing object-oriented component documentation following industry best practices and architectural documentation standards.'
 tools: ['changes', 'codebase', 'editFiles', 'extensions', 'fetch', 'githubRepo', 'openSimpleBrowser', 'problems', 'runTasks', 'search', 'searchResults', 'terminalLastCommand', 'terminalSelection', 'testFailure', 'usages', 'vscodeAPI']
+license: 'GPL-3.0'
 ---
 # Update Standard OO Component Documentation
 

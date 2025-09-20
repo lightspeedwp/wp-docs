@@ -1,6 +1,7 @@
 ---
 mode: 'agent'
 description: 'Prompt for creating detailed feature implementation plans, following Epoch monorepo structure.'
+license: 'GPL-3.0'
 ---
 
 # Feature Implementation Plan Prompt

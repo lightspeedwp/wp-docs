@@ -1,4 +1,5 @@
 ---
+license: 'GPL-3.0'
 description: 'Brainstorm and develop new application ideas through fun, interactive questioning until ready for specification creation.'
 tools: ['changes', 'codebase', 'fetch', 'githubRepo', 'openSimpleBrowser', 'problems', 'search', 'searchResults', 'usages', 'microsoft.docs.mcp', 'websearch']
 ---

@@ -2,6 +2,7 @@
 mode: 'agent'
 description: 'Create GitHub Pull Request for feature request from specification file using pull_request_template.md template.'
 tools: ['codebase', 'search', 'github', 'create_pull_request', 'update_pull_request', 'get_pull_request_diff']
+license: 'GPL-3.0'
 ---
 # Create GitHub Pull Request from Specification
 

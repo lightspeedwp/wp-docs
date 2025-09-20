@@ -1,0 +1,32 @@
+{
+    "alive-status-codes": [
+        200,
+        206,
+        301,
+        302,
+        304,
+        307,
+        308,
+        403
+    ],
+    "ignore-patterns": [
+        {
+            "pattern": "^https://github.com/github/awesome-copilot"
+        },
+        {
+            "pattern": "^https://raw.githubusercontent.com/github/awesome-copilot"
+        },
+        {
+            "pattern": "^mailto:"
+        },
+        {
+            "pattern": "^#"
+        }
+    ],
+    "timeout": "30s",
+    "retries": 2,
+    "exclude-dirs": [
+        "node_modules/",
+        ".git/"
+    ]
+}

@@ -1,6 +1,7 @@
 ---
 mode: 'agent'
 description: 'Review and refactor code in your project according to defined instructions'
+license: 'GPL-3.0'
 ---
 
 ## Role

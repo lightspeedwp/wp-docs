@@ -1,7 +1,7 @@
 id: testing-automation
 name: Testing & Test Automation
 description: Comprehensive collection for writing tests, test automation, and test-driven development including unit tests, integration tests, and end-to-end testing strategies.
-tags: [testing, tdd, automation, unit-tests, integration, playwright, jest, nunit]
+license: "GPL-3.0"tags: [testing, tdd, automation, unit-tests, integration, playwright, jest, nunit]
 items:
   # TDD Chat Modes
   - path: chatmodes/tdd-red.chatmode.md

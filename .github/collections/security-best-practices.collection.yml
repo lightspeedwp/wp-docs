@@ -1,7 +1,7 @@
 id: security-best-practices
 name: Security & Code Quality
 description: Security frameworks, accessibility guidelines, performance optimization, and code quality best practices for building secure, maintainable, and high-performance applications.
-tags: [security, accessibility, performance, code-quality, owasp, a11y, optimization, best-practices]
+license: "GPL-3.0"tags: [security, accessibility, performance, code-quality, owasp, a11y, optimization, best-practices]
 items:
   # Security & Quality Instructions
   - path: instructions/security-and-owasp.instructions.md

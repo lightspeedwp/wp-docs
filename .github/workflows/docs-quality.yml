@@ -1,0 +1,155 @@
+name: Documentation Quality Checks
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**/*.md'
+      - '.github/scripts/**'
+      - 'package.json'
+      - '.github/workflows/docs-quality.yml'
+
+jobs:
+  validate-docs:
+    runs-on: ubuntu-latest
+    name: Documentation Validation
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check UK English spelling
+        run: |
+          echo "Checking for US spelling variants..."
+          npm run lang:en-gb
+          if [ $? -ne 0 ]; then
+            echo "❌ Found US spelling variants. Run 'npm run lang:en-gb:apply' locally and commit changes."
+            exit 1
+          fi
+          echo "✅ No US spelling variants found"
+
+      - name: Validate generated catalogues
+        run: |
+          echo "Checking if README catalogues are up to date..."
+          npm run build
+          if ! git diff --exit-code; then
+            echo "❌ Generated catalogues are out of date. Run 'npm run build' locally and commit changes."
+            git diff
+            exit 1
+          fi
+          echo "✅ Generated catalogues are up to date"
+
+      - name: Check for placeholder content
+        run: |
+          echo "Scanning for placeholder content..."
+          if grep -r "REPONAME\|repo-name\|your-org\|your-theme-repo" --include="*.md" .; then
+            echo "❌ Found placeholder content that needs to be replaced"
+            exit 1
+          fi
+          echo "✅ No placeholder content found"
+
+      - name: Validate agent personas (if linter exists)
+        run: |
+          if [ -f "scripts/lint-agents.js" ]; then
+            echo "Validating agent persona structure..."
+            npm run lint:agents
+          else
+            echo "⚠️ Agent linter not yet implemented, skipping"
+          fi
+
+      - name: Check CHANGELOG format
+        run: |
+          echo "Validating CHANGELOG.md format..."
+          if ! grep -q "## \[Unreleased\]" CHANGELOG.md; then
+            echo "❌ CHANGELOG.md missing [Unreleased] section"
+            exit 1
+          fi
+          if ! grep -q "### Added\|### Changed\|### Deprecated\|### Removed\|### Fixed\|### Security" CHANGELOG.md; then
+            echo "❌ CHANGELOG.md missing Keep a Changelog categories"
+            exit 1
+          fi
+          echo "✅ CHANGELOG.md format appears valid"
+
+  link-checker:
+    runs-on: ubuntu-latest
+    name: Link Validation
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check internal links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          use-verbose-mode: 'no'
+          config-file: '.github/workflows/link-check-config.json'
+
+  security-scan:
+    runs-on: ubuntu-latest
+    name: Security Scan
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check for sensitive patterns
+        run: |
+          echo "Scanning for potentially sensitive content..."
+
+          # Check for API keys, tokens, passwords
+          if grep -r -i "api[_-]key\|token\|password\|secret" --include="*.md" . | grep -v "EXAMPLE\|TODO\|PLACEHOLDER"; then
+            echo "❌ Potential sensitive content found"
+            exit 1
+          fi
+
+          # Check for unsafe code examples (SQL injection, XSS)
+          if grep -r "\$_GET\|\$_POST" --include="*.md" . | grep -v "sanitize\|escape\|validate"; then
+            echo "❌ Potentially unsafe PHP code examples found"
+            exit 1
+          fi
+
+          echo "✅ No obvious sensitive content detected"
+
+  frontmatter-validation:
+    runs-on: ubuntu-latest
+    name: Frontmatter Validation
+    if: ${{ contains(github.event.head_commit.message, '.instructions.md') || contains(github.event.head_commit.message, '.prompt.md') }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Validate frontmatter structure
+        run: |
+          echo "Checking frontmatter in instruction and prompt files..."
+
+          # Check for required frontmatter fields
+          for file in $(find . -name "*.instructions.md" -o -name "*.prompt.md"); do
+            if ! grep -q "^description:" "$file"; then
+              echo "❌ Missing 'description' field in $file"
+              exit 1
+            fi
+            if [[ "$file" == *.instructions.md ]] && ! grep -q "^applyTo:" "$file"; then
+              echo "❌ Missing 'applyTo' field in instruction file $file"
+              exit 1
+            fi
+          done
+
+          echo "✅ Frontmatter validation passed"

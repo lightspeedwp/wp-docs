@@ -2,6 +2,7 @@
 mode: 'agent'
 description: 'Update a markdown file section with an index/table of files from a specified folder.'
 tools: ['changes', 'codebase', 'editFiles', 'extensions', 'fetch', 'findTestFiles', 'githubRepo', 'openSimpleBrowser', 'problems', 'runCommands', 'runTasks', 'runTests', 'search', 'searchResults', 'terminalLastCommand', 'terminalSelection', 'testFailure', 'usages', 'vscodeAPI']
+license: 'GPL-3.0'
 ---
 # Update Markdown File Index
 

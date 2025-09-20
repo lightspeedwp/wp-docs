@@ -1,5 +1,6 @@
 ---
 applyTo: '**'
+license: 'GPL-3.0'
 ---
 Coding standards, domain knowledge, and preferences that AI should follow.
 
