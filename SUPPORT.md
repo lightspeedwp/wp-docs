@@ -1,15 +1,13 @@
-# Support 
+## Support
 
-## How to file issues and get help
+**Please note:** We do not provide free support for our open source software. Support is available as a paid service.
 
-This project uses GitHub issues to track bugs and feature requests. Please search the existing issues before filing new issues to avoid duplicates. For new issues, file your bug or feature request as a new issue.
+For bug reports or issues, please use the relevant issue template in our [GitHub Issues](https://github.com/lightspeedwp/wp-docs/issues/new/choose) section.
 
-For help or questions about using this project, please raise an issue on GitHub.
+For paid support, contact our team:
 
-Please include one of the following statements file:
+-   **Email:** [support@lightspeedwp.agency](mailto:support@lightspeedwp.agency)
 
-- **Awesome Copilot Prompts** is under active development and maintained by GitHub and Microsoft staff **AND THE COMMUNITY**. We will do our best to respond to support, feature requests, and community questions in a timely manner.
-- 
-## GitHub Support Policy
+We aim to respond to paid support requests within 2 business days.
 
-Support for this project is limited to the resources listed above.
+For more information, please refer to our documentation or FAQ if available.

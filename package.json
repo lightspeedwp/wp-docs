@@ -24,7 +24,7 @@
     "instructions"
   ],
   "author": "GitHub",
-  "license": "MIT",
+  "license": "GPL-3.0-only",
   "devDependencies": {
     "all-contributors-cli": "^6.26.1"
   }

@@ -1,31 +1,69 @@
-Thanks for helping make GitHub safe for everyone.
+## Security Policy
 
-# Security
+We take the security of this project seriously. If you believe you have found a vulnerability, follow the coordinated disclosure process below.
 
-GitHub takes the security of our software products and services seriously, including all of the open source code repositories managed through our GitHub organizations, such as [GitHub](https://github.com/GitHub).
+### 1. Reporting
 
-Even though [open source repositories are outside of the scope of our bug bounty program](https://bounty.github.com/index.html#scope) and therefore not eligible for bounty rewards, we will ensure that your finding gets passed along to the appropriate maintainers for remediation. 
+-   **Email:** [support@lightspeedwp.agency](mailto:support@lightspeedwp.agency)
+-   **Subject Line:** `SECURITY: <brief summary>`
+-   **Include (as applicable):**
+    -   Affected file(s) / section(s)
+    -   Description of the issue & impact
+    -   Steps to reproduce (minimal proof-of-concept if possible)
+    -   Any suggested remediation ideas
+    -   Whether the issue has been disclosed elsewhere
 
-## Reporting Security Issues
+Please DO NOT open a public GitHub issue for potential vulnerabilities.
 
-If you believe you have found a security vulnerability in any GitHub-owned repository, please report it to us through coordinated disclosure.
+### 2. Response Targets
 
-**Please do not report security vulnerabilities through public GitHub issues, discussions, or pull requests.**
+| Phase                       | Target Time                                              |
+| --------------------------- | -------------------------------------------------------- |
+| Acknowledgement             | ≤ 3 business days                                        |
+| Initial assessment          | ≤ 5 business days                                        |
+| Remediation plan            | Typically within 10 business days (complexity dependent) |
+| Advisory / changelog update | At fix release                                           |
 
-Instead, please send an email to opensource-security[@]github.com.
+### 3. Scope
 
-Please include as much of the information listed below as you can to help us better understand and resolve the issue:
+In-scope issues include (non-exhaustive):
 
-  * The type of issue (e.g., buffer overflow, SQL injection, or cross-site scripting)
-  * Full paths of source file(s) related to the manifestation of the issue
-  * The location of the affected source code (tag/branch/commit or direct URL)
-  * Any special configuration required to reproduce the issue
-  * Step-by-step instructions to reproduce the issue
-  * Proof-of-concept or exploit code (if possible)
-  * Impact of the issue, including how an attacker might exploit the issue
+-   Sensitive data exposure through documentation or scripts
+-   Unsafe code examples promoting injection / XSS / CSRF / SSRF / privilege escalation
+-   Incorrect guidance that weakens WordPress hardening (e.g., advising disabling core protections)
+-   Supply chain risks in automation (script execution of untrusted input)
 
-This information will help us triage your report more quickly.
+Out-of-scope examples:
 
-## Policy
+-   Typos, broken non-security links
+-   UI/UX polish issues with no security implication
+-   Vulnerabilities in third-party platforms referenced (report upstream)
 
-See [GitHub's Safe Harbor Policy](https://docs.github.com/en/site-policy/security-policies/github-bug-bounty-program-legal-safe-harbor#1-safe-harbor-terms)
+### 4. Temporary Mitigations
+
+If you can suggest a safe interim mitigation, include it. Avoid recommending insecure workarounds (e.g., disabling sanitisation) unless strictly necessary and clearly caveated.
+
+### 5. Disclosure Policy
+
+We prefer coordinated disclosure. We will notify you when a fix is prepared and may request retest confirmation. Public acknowledgement is optional—let us know if you would like credit.
+
+### 6. Security Guidance References
+
+-   WordPress Security: https://developer.wordpress.org/security
+-   WordPress Coding Standards: https://developer.wordpress.org/coding-standards/wordpress-coding-standards/
+-   Project secure coding instructions: `.github/instructions/security-and-owasp.instructions.md`
+
+### 7. Hardening Principles Followed
+
+-   Principle of least privilege
+-   Input sanitisation on ingress, context-specific escaping on egress
+-   Nonce + capability checks for state-changing operations (where code examples exist)
+-   Avoidance of unsafe deserialisation patterns
+
+### 8. Versioning & Advisory
+
+Security-relevant changes are noted under the `Security` section in `CHANGELOG.md` (Keep a Changelog format). If impact warrants, a separate advisory / GitHub Security Advisory may be issued.
+
+---
+
+Thank you for helping keep the ecosystem safer.

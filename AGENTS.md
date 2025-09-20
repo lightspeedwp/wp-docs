@@ -1,6 +1,6 @@
 # Copilot Agents Guide (lightspeedwp)
 
-Purpose: Establish shared behavioral, quality, and domain expectations for any AI ("agent") operating in this workspace. This is a human & AI–readable contract; it is **not** a formal agent manifest spec (those would be separate JSON/YAML artifacts if/when adopted). Keep this file concise, actionable, and WordPress‑centric while preserving the repository's cross‑technology assets.
+Purpose: Establish shared behavioural, quality, and domain expectations for any AI ("agent") operating in this workspace. This is a human & AI–readable contract; it is **not** a formal agent manifest spec (those would be separate JSON/YAML artefacts if/when adopted). Keep this file concise, actionable, and WordPress‑centric while preserving the repository's cross‑technology assets.
 
 ---
 
@@ -10,8 +10,8 @@ See `README.md` for the full mission. In short: accelerate delivery of **high‑
 
 Agents MUST:
 
-1. Favor additive, non‑destructive improvements (do not delete generic assets unless explicitly directed).
-2. Contextualize generic patterns with WordPress overlays (hook usage, theme.json structure, escaping, i18n).
+1. Favour additive, non‑destructive improvements (do not delete generic assets unless explicitly directed).
+2. Contextualise generic patterns with WordPress overlays (hook usage, theme.json structure, escaping, i18n).
 3. Provide minimal, direct answers—only generate larger code blocks when explicitly requested or needed to illustrate a non‑trivial pattern.
 4. Explain the "why" for non‑obvious decisions (strategy > verbosity).
 
@@ -21,34 +21,34 @@ Agents MUST:
 
 ## 3. Core Behavioral Principles
 
-- **WordPress‑First Overlay:** Always check if a solution maps to native WP APIs (hooks, filters, REST endpoints, block editor APIs) before inventing abstractions.
-- **Least Intrusive Change:** Modify only what is necessary; preserve file history and style.
-- **Security by Default:** Use capability checks (`current_user_can`), nonces, sanitization (`sanitize_text_field`, `esc_url_raw`) and output escaping (`esc_html`, `esc_attr`, `wp_kses_post`).
-- **Performance Awareness:** Avoid unnecessary queries, duplicate asset enqueues, blocking code in the editor, or large server round trips. Suggest caching (transients / object cache) where justified.
-- **Accessibility Mindset:** Semantic elements, proper ARIA only when native semantics insufficient, focus management, colour contrast, keyboard operability. Code is produced _with accessibility in mind_ but must still be manually audited.
-- **Internationalization:** Wrap user‑facing strings in translation functions (`__`, `_e`, `_x`) with a consistent text domain.
+-   **WordPress‑First Overlay:** Always check if a solution maps to native WP APIs (hooks, filters, REST endpoints, block editor APIs) before inventing abstractions.
+-   **Least Intrusive Change:** Modify only what is necessary; preserve file history and style.
+-   **Security by Default:** Use capability checks (`current_user_can`), nonces, sanitisation (`sanitize_text_field`, `esc_url_raw`) and output escaping (`esc_html`, `esc_attr`, `wp_kses_post`).
+-   **Performance Awareness:** Avoid unnecessary queries, duplicate asset enqueues, blocking code in the editor, or large server round trips. Suggest caching (transients / object cache) where justified.
+-   **Accessibility Mindset:** Semantic elements, proper ARIA only when native semantics insufficient, focus management, colour contrast, keyboard operability. Code is produced _with accessibility in mind_ but must still be manually audited.
+-   **Internationalization:** Wrap user‑facing strings in translation functions (`__`, `_e`, `_x`) with a consistent text domain.
 
 ## 4. Quality Gates (PR Readiness Checklist)
 
 Before approving / merging, an agent should confirm:
 
-- [ ] Security: All user input sanitized on ingress, escaped on egress; capabilities enforced.
-- [ ] Performance: No obvious N+1 queries; assets only loaded when needed; block/theme JSON lean.
-- [ ] Accessibility: Semantics intact, interactive elements keyboard reachable, no colour contrast regressions.
-- [ ] i18n: All new user-visible strings translatable; no concatenated translatable fragments.
-- [ ] Coding Standards: Matches WordPress PHPCS, JS, CSS guidelines; consistent naming.
-- [ ] Documentation: Inline doc blocks updated; README / CHANGELOG amended if behaviour changes.
-- [ ] Tests / Validation: If logic is complex, propose or update tests (PHPUnit, Playwright, etc.).
-- [ ] Backward Safety: No breaking changes without explicit note & migration guidance.
+-   [ ] Security: All user input sanitized on ingress, escaped on egress; capabilities enforced.
+-   [ ] Performance: No obvious N+1 queries; assets only loaded when needed; block/theme JSON lean.
+-   [ ] Accessibility: Semantics intact, interactive elements keyboard reachable, no colour contrast regressions.
+-   [ ] i18n: All new user-visible strings translatable; no concatenated translatable fragments.
+-   [ ] Coding Standards: Matches WordPress PHPCS, JS, CSS guidelines; consistent naming.
+-   [ ] Documentation: Inline doc blocks updated; README / CHANGELOG amended if behaviour changes.
+-   [ ] Tests / Validation: If logic is complex, propose or update tests (PHPUnit, Playwright, etc.).
+-   [ ] Backward Safety: No breaking changes without explicit note & migration guidance.
 
 ## 5. Coding Standards References
 
 Central references (do not restate—link):
 
-- `coding-standards/index.md`
-- `coding-standards/wordpress-coding-standards/*.md`
-- Inline documentation: `coding-standards/inline-documentation-standards/`
-  Agents should surface the _specific_ rule when flagging an issue (e.g., "Escape late: use `esc_attr` for attribute context").
+-   `coding-standards/index.md`
+-   `coding-standards/wordpress-coding-standards/*.md`
+-   Inline documentation: `coding-standards/inline-documentation-standards/`
+    Agents should surface the _specific_ rule when flagging an issue (e.g., "Escape late: use `esc_attr` for attribute context").
 
 ## 6. Copilot Asset Ecosystem Usage
 
@@ -71,10 +71,10 @@ Decision Heuristic:
 
 Current scripts (from `package.json`):
 
-- `npm run build` – Executes `node scripts/update-readme.js` (keep READMEs regenerated / synchronized).
-- `npm run contributors:add` – All Contributors CLI (add new contributor).
-- `npm run contributors:generate` – Regenerate contributor table.
-- `npm run contributors:check` – Verify contributor metadata.
+-   `npm run build` – Executes `node scripts/update-readme.js` (keep READMEs regenerated / synchronized).
+-   `npm run contributors:add` – All Contributors CLI (add new contributor).
+-   `npm run contributors:generate` – Regenerate contributor table.
+-   `npm run contributors:check` – Verify contributor metadata.
 
 Agent Guidance:
 
@@ -98,17 +98,17 @@ Agent Guidance:
 
 ## 9. Performance Guardrails (Quick Scan)
 
-- Uncached heavy queries? Introduce transient or object cache (with invalidation strategy).
-- Large images / media references? Recommend optimisation or lazy loading.
-- Redundant script/style enqueues? Consolidate; use dependencies and `wp_enqueue_script` with versioning.
-- Avoid synchronous remote HTTP requests in page output phase.
+-   Uncached heavy queries? Introduce transient or object cache (with invalidation strategy).
+-   Large images / media references? Recommend optimisation or lazy loading.
+-   Redundant script/style enqueues? Consolidate; use dependencies and `wp_enqueue_script` with versioning.
+-   Avoid synchronous remote HTTP requests in page output phase.
 
 ## 10. Security Guardrails (Quick Scan)
 
-- No direct `$_POST` / `$_GET` usage without sanitization wrappers.
-- Prepared statements (`$wpdb->prepare`) for custom SQL.
-- Strip HTML where not required (`sanitize_text_field` vs `wp_kses_post`).
-- Resist path traversal: use WP filesystem API where applicable.
+-   No direct `$_POST` / `$_GET` usage without sanitization wrappers.
+-   Prepared statements (`$wpdb->prepare`) for custom SQL.
+-   Strip HTML where not required (`sanitize_text_field` vs `wp_kses_post`).
+-   Resist path traversal: use WP filesystem API where applicable.
 
 ## 11. Directory-Level AGENT.md Files
 
@@ -135,12 +135,12 @@ Significant structural or standards changes must append a new entry to `CHANGELO
 
 ## 15. Anti-Patterns to Avoid
 
-- Bulk refactors without scoped reasoning.
-- Introducing frameworks unrelated to WP ecosystem need.
-- Injecting custom REST endpoints duplicating core capabilities.
-- Overusing `innerHTML` without sanitization context.
-- Hard-coded styles instead of design tokens (theme.json presets).
-- Large multi-file PRs without incremental review points.
+-   Bulk refactors without scoped reasoning.
+-   Introducing frameworks unrelated to WP ecosystem need.
+-   Injecting custom REST endpoints duplicating core capabilities.
+-   Overusing `innerHTML` without sanitisation context.
+-   Hard-coded styles instead of design tokens (theme.json presets).
+-   Large multi-file PRs without incremental review points.
 
 ## 16. Accessibility Note
 

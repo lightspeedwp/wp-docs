@@ -1,24 +1,27 @@
 <!-- lightspeedwp root documentation -->
 
-# lightspeedwp docs
+# lightspeedwp – WordPress Engineering & AI Assistant Docs
 
-Accelerating high‑quality WordPress development with reusable AI building blocks: curated prompts, custom Copilot instructions, chat modes, and domain guides – all tuned to produce fast, secure, accessible, and maintainable WordPress (Gutenberg, block themes, plugins, patterns) solutions.
+Accelerating high‑quality WordPress development with reusable AI building blocks (prompts, instructions, chat modes, agent governance) and domain handbooks (block themes, coding standards, Gutenberg guides). Everything is tuned to produce fast, secure, accessible, internationalised, and maintainable solutions (themes, plugins, blocks, patterns).
 
 ## Mission
 
 Empower WordPress developers to deliver production‑ready features at lightspeed while upholding coding standards, accessibility (WCAG 2.2), performance, security (OWASP), and sustainable long‑term maintainability.
 
-## What This Repo Contains
+## Repository Structure (Primary Areas)
 
-| Category                 | Purpose                                                                       | Where                    |
-| ------------------------ | ----------------------------------------------------------------------------- | ------------------------ |
-| Prompts                  | Reusable task & workflow accelerators (e.g. block scaffolds, test strategies) | `README.prompts.md`      |
-| Chat Modes               | Specialized Copilot personas (e.g. accessibility reviewer, test strategist)   | `README.chatmodes.md`    |
-| Instructions             | Long‑lived behavioral guardrails & standards (a11y, security, performance)    | `README.instructions.md` |
-| Collections              | Thematic bundles (under review for WP alignment)                              | `README.collections.md`  |
-| Block / Theme Guidelines | Fluid spacing, typography, global styles, naming                              | `block-themes/`          |
-| Coding Standards         | WordPress + inline docs + research notes                                      | `coding-standards/`      |
-| Gutenberg Guides         | Getting started, how‑tos, reference                                           | `gutenberg/`             |
+| Area                 | Path                     | Summary                                                             |
+| -------------------- | ------------------------ | ------------------------------------------------------------------- |
+| Documentation Hub    | `docs/`                  | Master index & cross-cutting conventions (see `docs/README.md`).    |
+| Copilot / AI Assets  | `docs/copilot-space/`    | Prompts, instructions, chat modes, agent schemas & authoring rules. |
+| Block Theme Guidance | `docs/block-themes/`     | Fluid spacing, typography scales, global styles, naming, patterns.  |
+| Coding Standards     | `docs/coding-standards/` | WordPress coding standards overlays, inline docs, research notes.   |
+| Gutenberg Guides     | `docs/gutenberg/`        | Getting started, how‑tos, reference, schemas.                       |
+| Frontmatter Schemas  | `docs/frontmatter/`      | YAML frontmatter conventions & schemas.                             |
+| Agent Governance     | `AGENTS.md`              | Behavioural contract for AI assistants & personas.                  |
+| Automation Scripts   | `.github/scripts/`       | Generators, validators, normalisation tooling.                      |
+
+See also: `CHANGELOG.md` for historical evolution.
 
 ## Why Keep Cross‑Technology Assets?
 
@@ -30,7 +33,7 @@ Many engineering concerns (testing discipline, performance, security, accessibil
 
 Future refinement: lightweight tagging (e.g. `wp-core`, `block-dev`, `generic`, `infra`) to improve discoverability without deleting value.
 
-## Quick Start
+## Quick Start (Using AI Assets)
 
 1. Install desired Copilot assets (Prompts / Chat Modes / Instructions) via VS Code badges in each catalog.
 2. Copy any custom instruction you want permanently into `.github/instructions/` (or merge into a project‑level `copilot-instructions.md`).
@@ -46,18 +49,18 @@ Future refinement: lightweight tagging (e.g. `wp-core`, `block-dev`, `generic`, 
 
 ### Example: Harden a Custom REST Endpoint
 
-1. Invoke security instructions (OWASP) + performance optimisation guidelines.
+1. Invoke security instructions (OWASP) + performance optimization guidelines.
 2. Provide the endpoint handler code to a “Security & Code Quality” chat mode.
 3. Request: “Suggest nonce, capability checks, caching & schema validation improvements.”
 
 ## WordPress Development Focus Areas
 
-- Block Themes: design tokens → `theme.json` → fluid scale alignment.
-- Gutenberg Blocks: React component patterns, server render callbacks, context & attributes hygiene.
-- Performance: asset enqueue strategy, script loading strategy, avoiding layout shift, caching layers.
-- Accessibility: semantic markup, focus management, ARIA correctness, colour contrast.
-- Internationalization: text domains, `__()/_x()` usage, extraction workflow.
-- Testing: Playwright for editor flows, PHPUnit / WP-CLI tests, Jest for block UI logic.
+-   Block Themes: design tokens → `theme.json` → fluid scale alignment.
+-   Gutenberg Blocks: React component patterns, server render callbacks, context & attributes hygiene.
+-   Performance: asset enqueue strategy, script loading strategy, avoiding layout shift, caching layers.
+-   Accessibility: semantic markup, focus management, ARIA correctness, color contrast.
+-   Internationalization: text domains, `__()/_x()` usage, extraction workflow.
+-   Testing: Playwright for editor flows, PHPUnit / WP-CLI tests, Jest for block UI logic.
 
 ## Contributing (Overview)
 
@@ -71,26 +74,29 @@ See `CONTRIBUTING.md` for full process. Summary:
 
 ### Quality Checklist (Abbreviated)
 
-- Clear purpose & actionable steps
-- WordPress alignment (or clearly marked cross‑tech)
-- Accessibility & security consciousness
-- No hard‑coded secrets / unsafe patterns
-- Consistent naming & formatting
+-   Clear purpose & actionable steps
+-   WordPress alignment (or clearly marked cross‑tech)
+-   Accessibility & security consciousness
+-   No hard‑coded secrets / unsafe patterns
+-   Consistent naming & formatting
 
-## Roadmap (Initial)
+## Roadmap Snapshot
 
-- Tagging system for discovery (`generic`, `wp-block`, `wp-theme`, `infra`).
-- Add WordPress‑specific chat modes (Theme JSON Refiner, Block Accessibility Auditor, Hook Strategy Advisor).
-- Collections reclassification: introduce WP‑centric curated sets.
-- Metrics: optional guidance for measuring Core Web Vitals in block themes.
+High‑level items (see `CHANGELOG.md` for canonical history & upcoming):
 
-## Install Badge Namespace Note
+-   Tagging taxonomy for AI assets & docs.
+-   WordPress‑specialised chat modes (Theme JSON Refiner, Block Accessibility Auditor, Hook Strategy Advisor).
+-   Collections curation once tagging lands.
+-   Domain surfacing (stability, domain) in generated README tables.
+-   Automated link & frontmatter validator.
 
-Current install badge links reference the original upstream namespace. They remain functional; we will migrate or dual‑publish once a stable lightspeedwp distribution path is finalized.
+## Namespace & Badges
 
-## Licence
+Any legacy install badges still referencing upstream sources are intentionally preserved during transition; they will migrate once tagging + mirroring strategy finalises.
 
-Unless otherwise noted, content is MIT Licensed. Review individual file headers if present.
+## License
+
+This repository is licensed under the **GNU GPL v3** (see `LICENSE`). Documentation and AI asset text are distributed under the same license for simplicity. If you require alternative terms for specific reuse scenarios, open an issue to discuss.
 
 ## Feedback & Improvements
 
@@ -98,4 +104,4 @@ Open an issue with: context, goal, current friction, desired outcome. Evidence (
 
 ---
 
-Built with accessibility, security, and performance in mind—please still manually review and test.
+Crafted with accessibility, security, performance, and internationalisation in mind—manual review & testing still required.
