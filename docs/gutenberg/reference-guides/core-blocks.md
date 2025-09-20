@@ -18,7 +18,7 @@ Displays a group of accordion headers and associated expandable content. ([Sourc
 - **Allowed Blocks:** core/accordion-content
   **Supports:** align (full, wide), background (backgroundImage, backgroundSize), color (background, gradient, text), interactivity, layout, shadow, spacing (blockGap, margin, padding), ~~html~~
   **Supports:** align (full, wide), color (background, gradient, text), interactivity, shadow, spacing (blockGap, margin)
-  **Supports:** anchor, border, color (background, gradient, text), interactivity, shadow, spacing (margin, padding), typography (fontSize, textAlign), ~~align~~
+  **Supports:** anchor, border, color (background, gradient, text), interactivity, shadow, spacing (margin, padding), typography (fontSize, textAlign),
   **Supports:** border, color (background, gradient, text), interactivity, shadow, spacing (blockGap, margin, padding), typography (fontSize, lineHeight)
   **Supports:** align, color (background, gradients, link, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
   **Supports:** align, color (~~background~~, ~~text~~), filter (duotone), interactivity (clientNavigation), spacing (margin, padding), ~~alignWide~~, ~~html~~
@@ -28,7 +28,7 @@ Displays a group of accordion headers and associated expandable content. ([Sourc
 - **Category:** design
 - **Parent:** core/accordion
 - **Allowed Blocks:** core/accordion-header, core/accordion-panel
-- **Supports:** align (full, wide), colour (background, gradient, text), interactivity, shadow, spacing (blockGap, margin)
+- **Supports:** align (full, wide), color (background, gradient, text), interactivity, shadow, spacing (blockGap, margin)
 - **Attributes:** openByDefault
 
 ## Accordion Header
@@ -39,7 +39,7 @@ Displays an accordion header. ([Source](https://github.com/WordPress/gutenberg/t
 - **Experimental:** true
 - **Category:** design
 - **Parent:** core/accordion-content
-- **Supports:** anchor, border, colour (background, gradient, text), interactivity, shadow, spacing (margin, padding), typography (fontSize, textAlign), ~~align~~
+- **Supports:** anchor, border, color (background, gradient, text), interactivity, shadow, spacing (margin, padding), typography (fontSize, textAlign), ~~align~~
 - **Attributes:** iconPosition, level, levelOptions, openByDefault, showIcon, textAlignment, title
 
 ## Accordion Panel
@@ -50,7 +50,7 @@ Displays an accordion panel. ([Source](https://github.com/WordPress/gutenberg/tr
 - **Experimental:** true
 - **Category:** design
 - **Parent:** core/accordion-content
-- **Supports:** border, colour (background, gradient, text), interactivity, shadow, spacing (blockGap, margin, padding), typography (fontSize, lineHeight)
+- **Supports:** border, color (background, gradient, text), interactivity, shadow, spacing (blockGap, margin, padding), typography (fontSize, lineHeight)
 - **Attributes:** allowedBlocks, isSelected, openByDefault, templateLock
 
 ## Archives
@@ -59,7 +59,7 @@ Display a date archive of your posts. ([Source](https://github.com/WordPress/gut
 
 - **Name:** core/archives
 - **Category:** widgets
-- **Supports:** align, colour (background, gradients, link, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
+- **Supports:** align, color (background, gradients, link, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
 - **Attributes:** displayAsDropdown, showLabel, showPostCounts, type
 
 ## Audio
@@ -77,7 +77,7 @@ Add a user’s avatar. ([Source](https://github.com/WordPress/gutenberg/tree/tru
 
 - **Name:** core/avatar
 - **Category:** theme
-- **Supports:** align, colour (~~background~~, ~~text~~), filter (duotone), interactivity (clientNavigation), spacing (margin, padding), ~~alignWide~~, ~~html~~
+- **Supports:** align, color (~~background~~, ~~text~~), filter (duotone), interactivity (clientNavigation), spacing (margin, padding), ~~alignWide~~, ~~html~~
 - **Attributes:** isLink, linkTarget, size, userId
 
 ## Pattern
@@ -96,7 +96,7 @@ Prompt visitors to take action with a button-style link. ([Source](https://githu
 - **Name:** core/button
 - **Category:** design
 - **Parent:** core/buttons
-- **Supports:** anchor, colour (background, gradients, text), interactivity (clientNavigation), shadow (), spacing (padding), splitting, typography (fontSize, lineHeight), ~~alignWide~~, ~~align~~, ~~reusable~~
+- **Supports:** anchor, color (background, gradients, text), interactivity (clientNavigation), shadow (), spacing (padding), splitting, typography (fontSize, lineHeight)
 - **Attributes:** backgroundColor, gradient, linkTarget, placeholder, rel, tagName, text, textAlign, textColor, title, type, url, width
 
 ## Buttons
@@ -106,7 +106,7 @@ Prompt visitors to take action with a group of button-style links. ([Source](htt
 - **Name:** core/buttons
 - **Category:** design
 - **Allowed Blocks:** core/button
-- **Supports:** align (full, wide), anchor, colour (background, gradients, ~~text~~), interactivity (clientNavigation), layout (default, ~~allowInheriting~~, ~~allowSwitching~~), spacing (blockGap, margin, padding), typography (fontSize, lineHeight), ~~html~~
+- **Supports:** align (full, wide), anchor, color (background, gradients, ~~text~~), interactivity (clientNavigation), layout (default, ~~allowInheriting~~, ~~allowSwitching~~), spacing (blockGap, margin, padding), typography (fontSize, lineHeight), ~~html~~
 
 ## Calendar
 
@@ -114,7 +114,7 @@ A calendar of your site’s posts. ([Source](https://github.com/WordPress/gutenb
 
 - **Name:** core/calendar
 - **Category:** widgets
-- **Supports:** align, colour (background, link, text), interactivity (clientNavigation), typography (fontSize, lineHeight), ~~html~~
+- **Supports:** align, color (background, link, text), interactivity (clientNavigation), typography (fontSize, lineHeight), ~~html~~
 - **Attributes:** month, year
 
 ## Terms List
@@ -123,7 +123,7 @@ Display a list of all terms of a given taxonomy. ([Source](https://github.com/Wo
 
 - **Name:** core/categories
 - **Category:** widgets
-- **Supports:** align, colour (background, gradients, link, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
+- **Supports:** align, color (background, gradients, link, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
 - **Attributes:** displayAsDropdown, label, showEmpty, showHierarchy, showLabel, showOnlyTopLevel, showPostCounts, taxonomy
 
 ## Code
@@ -132,7 +132,7 @@ Display code snippets that respect your spacing and tabs. ([Source](https://gith
 
 - **Name:** core/code
 - **Category:** text
-- **Supports:** align (wide), anchor, colour (background, gradients, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight)
+- **Supports:** align (wide), anchor, color (background, gradients, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight)
 - **Attributes:** content
 
 ## Column
@@ -142,7 +142,7 @@ A single column within a columns block. ([Source](https://github.com/WordPress/g
 - **Name:** core/column
 - **Category:** design
 - **Parent:** core/columns
-- **Supports:** anchor, colour (background, button, gradients, heading, link, text), interactivity (clientNavigation), layout, shadow, spacing (blockGap, padding), typography (fontSize, lineHeight), ~~html~~, ~~reusable~~
+- **Supports:** anchor, color (background, button, gradients, heading, link, text), interactivity (clientNavigation), layout, shadow, spacing (blockGap, padding), typography (fontSize, lineHeight), ~~html~~, ~~reusable~~
 - **Attributes:** allowedBlocks, templateLock, verticalAlignment, width
 
 ## Columns
@@ -152,7 +152,7 @@ Display content in multiple columns, with blocks added to each column. ([Source]
 - **Name:** core/columns
 - **Category:** design
 - **Allowed Blocks:** core/column
-- **Supports:** align (full, wide), anchor, colour (background, button, gradients, heading, link, text), interactivity (clientNavigation), layout (default, ~~allowEditing~~, ~~allowInheriting~~, ~~allowSwitching~~), shadow, spacing (blockGap, margin, padding), typography (fontSize, lineHeight), ~~html~~
+- **Supports:** align (full, wide), anchor, color (background, button, gradients, heading, link, text), interactivity (clientNavigation), layout (default, ~~allowEditing~~, ~~allowInheriting~~, ~~allowSwitching~~), shadow, spacing (blockGap, margin, padding), typography (fontSize, lineHeight), ~~html~~
 - **Attributes:** isStackedOnMobile, templateLock, verticalAlignment
 
 ## Comment Author Avatar (deprecated)
@@ -163,7 +163,7 @@ This block is deprecated. Please use the Avatar block instead. ([Source](https:/
 - **Experimental:** fse
 - **Category:** theme
 - **Ancestor:** core/comment-template
-- **Supports:** colour (background, ~~text~~), interactivity (clientNavigation), spacing (margin, padding), ~~html~~, ~~inserter~~
+- **Supports:** color (background, ~~text~~), interactivity (clientNavigation), spacing (margin, padding)
 - **Attributes:** height, width
 
 ## Comment Author Name
@@ -173,7 +173,7 @@ Displays the name of the author of the comment. ([Source](https://github.com/Wor
 - **Name:** core/comment-author-name
 - **Category:** theme
 - **Ancestor:** core/comment-template
-- **Supports:** colour (background, gradients, link, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
+- **Supports:** color (background, gradients, link, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
 - **Attributes:** isLink, linkTarget, textAlign
 
 ## Comment Content
@@ -183,7 +183,7 @@ Displays the contents of a comment. ([Source](https://github.com/WordPress/guten
 - **Name:** core/comment-content
 - **Category:** theme
 - **Ancestor:** core/comment-template
-- **Supports:** colour (background, gradients, link, text), spacing (padding), typography (fontSize, lineHeight), ~~html~~
+- **Supports:** color (background, gradients, link, text), spacing (padding), typography (fontSize, lineHeight), ~~html~~
 - **Attributes:** textAlign
 
 ## Comment Date
@@ -193,7 +193,7 @@ Displays the date on which the comment was posted. ([Source](https://github.com/
 - **Name:** core/comment-date
 - **Category:** theme
 - **Ancestor:** core/comment-template
-- **Supports:** colour (background, gradients, link, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
+- **Supports:** color (background, gradients, link, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
 - **Attributes:** format, isLink
 
 ## Comment Edit Link
@@ -203,7 +203,7 @@ Displays a link to edit the comment in the WordPress Dashboard. This link is onl
 - **Name:** core/comment-edit-link
 - **Category:** theme
 - **Ancestor:** core/comment-template
-- **Supports:** colour (background, gradients, link, ~~text~~), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
+- **Supports:** color (background, gradients, link, ~~text~~), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
 - **Attributes:** linkTarget, textAlign
 
 ## Comment Reply Link
@@ -213,7 +213,7 @@ Displays a link to reply to a comment. ([Source](https://github.com/WordPress/gu
 - **Name:** core/comment-reply-link
 - **Category:** theme
 - **Ancestor:** core/comment-template
-- **Supports:** colour (background, gradients, link, ~~text~~), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
+- **Supports:** color (background, gradients, link, ~~text~~), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
 - **Attributes:** textAlign
 
 ## Comment Template
@@ -231,7 +231,7 @@ An advanced block that allows displaying post comments using different visual co
 
 - **Name:** core/comments
 - **Category:** theme
-- **Supports:** align (full, wide), colour (background, gradients, heading, link, text), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
+- **Supports:** align (full, wide), color (background, gradients, heading, link, text), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
 - **Attributes:** legacy, tagName
 
 ## Comments Pagination
@@ -242,7 +242,7 @@ Displays a paginated navigation to next/previous set of comments, when applicabl
 - **Category:** theme
 - **Parent:** core/comments
 - **Allowed Blocks:** core/comments-pagination-previous, core/comments-pagination-numbers, core/comments-pagination-next
-- **Supports:** align, colour (background, gradients, link, text), interactivity (clientNavigation), layout (default, ~~allowInheriting~~, ~~allowSwitching~~), typography (fontSize, lineHeight), ~~html~~, ~~reusable~~
+- **Supports:** align, color (background, gradients, link, text), interactivity (clientNavigation), layout (default, ~~allowInheriting~~, ~~allowSwitching~~), typography (fontSize, lineHeight), ~~html~~, ~~reusable~~
 - **Attributes:** paginationArrow
 
 ## Comments Next Page
@@ -252,7 +252,7 @@ Displays the next comment's page link. ([Source](https://github.com/WordPress/gu
 - **Name:** core/comments-pagination-next
 - **Category:** theme
 - **Parent:** core/comments-pagination
-- **Supports:** colour (background, gradients, ~~text~~), interactivity (clientNavigation), typography (fontSize, lineHeight), ~~html~~, ~~reusable~~
+- **Supports:** color (background, gradients, ~~text~~), interactivity (clientNavigation), typography (fontSize, lineHeight), ~~html~~, ~~reusable~~
 - **Attributes:** label
 
 ## Comments Page Numbers
@@ -262,7 +262,7 @@ Displays a list of page numbers for comments pagination. ([Source](https://githu
 - **Name:** core/comments-pagination-numbers
 - **Category:** theme
 - **Parent:** core/comments-pagination
-- **Supports:** colour (background, gradients, ~~text~~), interactivity (clientNavigation), typography (fontSize, lineHeight), ~~html~~, ~~reusable~~
+- **Supports:** color (background, gradients, ~~text~~), interactivity (clientNavigation), typography (fontSize, lineHeight), ~~html~~, ~~reusable~~
 
 ## Comments Previous Page
 
@@ -271,7 +271,7 @@ Displays the previous comment's page link. ([Source](https://github.com/WordPres
 - **Name:** core/comments-pagination-previous
 - **Category:** theme
 - **Parent:** core/comments-pagination
-- **Supports:** colour (background, gradients, ~~text~~), interactivity (clientNavigation), typography (fontSize, lineHeight), ~~html~~, ~~reusable~~
+- **Supports:** color (background, gradients, ~~text~~), interactivity (clientNavigation), typography (fontSize, lineHeight), ~~html~~, ~~reusable~~
 - **Attributes:** label
 
 ## Comments Title
@@ -281,7 +281,7 @@ Displays a title with the number of comments. ([Source](https://github.com/WordP
 - **Name:** core/comments-title
 - **Category:** theme
 - **Ancestor:** core/comments
-- **Supports:** align, colour (background, gradients, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~anchor~~, ~~html~~
+- **Supports:** align, color (background, gradients, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~anchor~~, ~~html~~
 - **Attributes:** level, levelOptions, showCommentsCount, showPostTitle, textAlign
 
 ## Cover
@@ -900,7 +900,7 @@ Describe in a few words what this site is about. This is important for search re
 
 - **Name:** core/site-tagline
 - **Category:** theme
-- **Supports:** align (full, wide), colour (background, gradients, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
+- **Supports:** align (full, wide), color (background, gradients, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
 - **Attributes:** level, levelOptions, textAlign
 
 ## Site Title
@@ -909,7 +909,7 @@ Displays the name of this site. Update the block, and the changes apply everywhe
 
 - **Name:** core/site-title
 - **Category:** theme
-- **Supports:** align (full, wide), colour (background, gradients, link, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
+- **Supports:** align (full, wide), color (background, gradients, link, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
 - **Attributes:** isLink, level, levelOptions, linkTarget, textAlign
 
 ## Social Icon
@@ -929,7 +929,7 @@ Display icons linking to your social profiles or sites. ([Source](https://github
 - **Name:** core/social-links
 - **Category:** widgets
 - **Allowed Blocks:** core/social-link
-- **Supports:** align (center, left, right), anchor, colour (background, gradients, ~~enableContrastChecker~~, ~~text~~), interactivity (clientNavigation), layout (default, ~~allowInheriting~~, ~~allowSwitching~~, ~~allowVerticalAlignment~~), spacing (blockGap, margin, padding, units), ~~html~~
+- **Supports:** align (center, left, right), anchor, color (background, gradients, ~~enableContrastChecker~~, ~~text~~), interactivity (clientNavigation), layout (default, ~~allowInheriting~~, ~~allowSwitching~~, ~~allowVerticalAlignment~~), spacing (blockGap, margin, padding, units), ~~html~~
 - **Attributes:** customIconBackgroundColor, customIconColor, iconBackgroundColor, iconBackgroundColorValue, iconColor, iconColorValue, openInNewTab, showLabels, size
 
 ## Spacer
@@ -947,7 +947,7 @@ Create structured content in rows and columns to display information. ([Source](
 
 - **Name:** core/table
 - **Category:** text
-- **Supports:** align, anchor, colour (background, gradients, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight)
+- **Supports:** align, anchor, color (background, gradients, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight)
 - **Attributes:** body, caption, foot, hasFixedLayout, head
 
 ## Table of Contents
@@ -957,7 +957,7 @@ Summarize your post with a list of headings. Add HTML anchors to Heading blocks 
 - **Name:** core/table-of-contents
 - **Experimental:** true
 - **Category:** design
-- **Supports:** colour (background, gradients, link, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
+- **Supports:** color (background, gradients, link, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
 - **Attributes:** headings, maxLevel, onlyIncludeCurrentPage
 
 ## Tag Cloud
@@ -984,7 +984,7 @@ Display the description of categories, tags and custom taxonomies when viewing a
 
 - **Name:** core/term-description
 - **Category:** theme
-- **Supports:** align (full, wide), colour (background, link, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
+- **Supports:** align (full, wide), color (background, link, text), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight), ~~html~~
 - **Attributes:** textAlign
 
 ## Text Columns (deprecated)
@@ -1002,7 +1002,7 @@ Insert poetry. Use special spacing formats. Or quote song lyrics. ([Source](http
 
 - **Name:** core/verse
 - **Category:** text
-- **Supports:** anchor, background (backgroundImage, backgroundSize), colour (background, gradients, link, text), dimensions (minHeight), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight)
+- **Supports:** anchor, background (backgroundImage, backgroundSize), color (background, gradients, link, text), dimensions (minHeight), interactivity (clientNavigation), spacing (margin, padding), typography (fontSize, lineHeight)
 - **Attributes:** content, textAlign
 
 ## Video
