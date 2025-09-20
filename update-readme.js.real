@@ -1,0 +1,2 @@
+// Real implementation referenced by wrapper .github/scripts/update-readme.js
+module.exports = require('./update-readme.js');

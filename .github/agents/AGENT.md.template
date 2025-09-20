@@ -1,0 +1,15 @@
+<!-- Template Relocated -->
+# Directory Agent Template (Relocated)
+
+The canonical template now lives at:
+
+`/.github/agents/AGENT.md.template`
+
+Reason: All agent-related assets (personas + scaffolding) are co-located under `.github/agents/` for discoverability and governance cohesion.
+
+If you need to create a new directory specialisation:
+1. Copy the template from the path above to `<target-directory>/AGENT.md`.
+2. Populate required sections (Scope, Objectives, Key Artefacts, Conventions, Playbooks, Quality Map, Anti-Patterns, Hooks, Open Questions, Change Log).
+3. Keep file concise (~150 lines) and defer broad policy back to `AGENTS.md`.
+
+This stub remains to avoid broken references in historic commits or external links.

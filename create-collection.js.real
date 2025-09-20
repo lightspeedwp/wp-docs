@@ -1,0 +1,3 @@
+#!/usr/bin/env node
+// Indirection file for relocated wrapper.
+require('./create-collection.js');

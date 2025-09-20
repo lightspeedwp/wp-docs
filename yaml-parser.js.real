@@ -1,0 +1,2 @@
+// Indirection module for relocated wrapper in .github/scripts
+module.exports = require('./yaml-parser.js');

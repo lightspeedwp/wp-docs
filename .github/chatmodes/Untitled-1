@@ -1,0 +1,2 @@
+#!/usr/bin/env node
+require('./.github/scripts/update-readme.js');
