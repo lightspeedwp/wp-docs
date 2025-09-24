@@ -1,0 +1,20 @@
+{
+    "servers": {
+        "github": {
+            "type": "http",
+            "url": "https://api.githubcopilot.com/mcp/"
+        },
+        "playwright": {
+            "command": "npx",
+            "args": ["@playwright/mcp@latest"]
+        },
+        "figma": {
+            "type": "http",
+            "url": "http://127.0.0.1:3001/mcp"
+        },
+        "markitdown": {
+            "command": "uvx",
+            "args": ["markitdown-mcp"]
+        }
+    }
+}

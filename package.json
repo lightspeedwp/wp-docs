@@ -1,10 +1,10 @@
 {
-  "name": "awesome-copilot",
+  "name": "wp-docs",
   "version": "1.0.0",
-  "description": "Enhance your GitHub Copilot experience with community-contributed instructions, prompts, and chat modes",
-  "main": "update-readme.js",
+  "description": "WordPress documentation and Copilot assets for LightSpeed WordPress projects",
+  "main": ".github/scripts/update-readme.js",
   "scripts": {
-    "build": "node update-readme.js",
+    "build": "node .github/scripts/update-readme.js",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "contributors:check": "all-contributors check",
@@ -14,16 +14,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/github/awesome-copilot.git"
+    "url": "https://github.com/lightspeedwp/wp-docs.git"
   },
   "keywords": [
+    "wordpress",
     "github",
     "copilot",
     "ai",
     "prompts",
-    "instructions"
+    "instructions",
+    "lightspeed",
+    "documentation"
   ],
-  "author": "GitHub",
+  "author": "LightSpeed WordPress",
   "license": "GPL-3.0-only",
   "devDependencies": {
     "all-contributors-cli": "^6.26.1"

@@ -28,10 +28,10 @@ jobs:
           node-version: "20"
 
       - name: Validate collections
-        run: node validate-collections.js
+        run: node .github/scripts/validate-collections.js
 
       - name: Update README.md
-        run: node update-readme.js
+        run: node .github/scripts/update-readme.js
 
       - name: Check for README.md changes
         id: check-diff
@@ -70,7 +70,7 @@ jobs:
 
             <details>
               <summary>View diff</summary>
-              
+
               ```diff
               ${{ steps.check-diff.outputs.diff }}
               ```

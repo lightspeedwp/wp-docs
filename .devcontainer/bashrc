@@ -1,0 +1,78 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# Basic shell options
+shopt -s histappend
+shopt -s checkwinsize
+shopt -s globstar
+
+# History settings
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# Enable color support
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# Useful aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias c='clear'
+alias h='history'
+alias tree='tree -aC -I "node_modules|.git"'
+
+# WordPress development aliases
+alias wp-build='npm run build'
+alias wp-validate='npm run validate-collections'
+alias wp-readme='npm run build'
+alias wp-lint='npm run lint:agents'
+
+# Git aliases
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gl='git log --oneline'
+alias gd='git diff'
+alias gb='git branch'
+alias gco='git checkout'
+
+# MCP and Copilot helpers
+alias mcp-status='echo "MCP Servers Status:" && ps aux | grep -E "(mcp|copilot)" | grep -v grep'
+alias copilot-check='code --list-extensions | grep -E "(copilot|claude|gemini)"'
+
+# Development environment info
+echo "🚀 WordPress Documentation Development Environment"
+echo "📁 Workspace: $(pwd)"
+echo "🐳 Container: DevContainer with MCP support"
+echo "🤖 AI Tools: GitHub Copilot, Claude, Gemini ready"
+echo "📝 Available commands: wp-build, wp-validate, wp-readme, wp-lint"
+echo ""
+
+# Show current git branch in prompt
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+# Custom prompt
+PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\$ '
+
+# Welcome message
+if [ -f /workspace/README.md ]; then
+    echo "📖 Project README available - run 'cat README.md' to view"
+fi
