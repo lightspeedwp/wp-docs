@@ -1,0 +1,4 @@
+- [ ] Version/changelog
+- [ ] CI green
+- [ ] Docs reflect changes
+- [ ] Migrations/scripts documented

@@ -1,7 +1,8 @@
 id: frontend-web-dev
 name: Frontend Web Development
 description: Essential prompts, instructions, and chat modes for modern frontend web development including React, Angular, Vue, TypeScript, and CSS frameworks.
-license: "GPL-3.0"tags: [frontend, web, react, typescript, javascript, css, html, angular, vue]
+license: "GPL-3.0"
+tags: [frontend, web, react, typescript, javascript, css, html, angular, vue]
 items:
   # Expert Chat Modes
   - path: chatmodes/expert-react-frontend-engineer.chatmode.md

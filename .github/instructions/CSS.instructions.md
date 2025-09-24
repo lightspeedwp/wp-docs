@@ -1,0 +1,1 @@
+- Tabs; BEM; no IDs; low specificity; mobile-first MQ; `rem/em`; avoid `!important`; Autoprefixer.

@@ -1,5 +1,6 @@
 {
-    "mcp.autoStart": true,
+    "mcp.autoStart": false,
+    "mcp.servers.github.autoStart": true,
     "chat.mcp.access": "all",
     "github.copilot.chat.virtualTools.threshold": 128,
     "github.copilot.chat.enableMcp": true,
