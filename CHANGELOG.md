@@ -15,16 +15,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-
--   Placeholder section for upcoming tagging taxonomy, link validator, validator schema enforcement.
-
 ### Planned
 
 -   Tagging taxonomy for AI & documentation assets.
 -   Domain & stability surfacing in generated README tables.
 -   Frontmatter & internal link validator (CI).
 -   Collections curation after taxonomy.
+
+## [0.1.1] - 2025-09-25
+
+### Added
+
+-   WordPress inline documentation Copilot assets following official WordPress coding standards:
+    -   `wordpress-inline-documentation.instructions.md` - Global documentation guidelines
+    -   `wordpress-inline-documentation-generator.prompts.md` - Standards-compliant documentation generation
+    -   `wordpress-documentation-expert.chatmodes.md` - Interactive documentation assistance  
+    -   `wordpress-documentation-specialist.agents.md` - Specialized documentation domain expert
+-   WordPress coding standards integration in `custom-instructions.md` with links to official WordPress documentation guidelines
+-   Enhanced VS Code configuration with proper file associations for plural extensions (`.chatmodes.md`, `.prompts.md`, `.agents.md`)
+
+### Changed
+
+-   Cleaned up repository configuration files irrelevant to documentation repository
+-   Updated VS Code workspace settings for better file associations and extension recommendations
+-   Removed unnecessary build tool configurations (webpack, browserslist, stylelint)
+-   Streamlined package.json dependencies focusing on documentation and linting needs
+-   Updated README.md to reflect actual repository structure (.github/ instead of docs/copilot-space/)
+-   Enhanced DEVELOPMENT.md with comprehensive script documentation and workflow guidance
+
+### Removed
+
+-   `webpack.config.js` - Not needed for documentation repository
+-   `.browserslistrc` - Only needed for frontend asset compilation  
+-   `stylelint.config.js` and `.stylelintrc.json` - No CSS files to lint
+-   `github.code-workspace` - Redundant with `wp-docs.code-workspace`
+-   Duplicate configuration files (`.prettierignore copy`, `.stylelintrc copy.json`)
+-   CSS/SCSS related VS Code extensions since no CSS files exist in repository
+
+### Fixed
+
+-   Section numbering in `custom-instructions.md` (removed duplicate section 6)
+-   VS Code file associations now properly recognize plural file extensions
+-   Updated extension recommendations to focus on WordPress documentation and AI development tools
+-   Repository structure references throughout documentation files
 
 ## [0.1.0] - 2025-09-20
 

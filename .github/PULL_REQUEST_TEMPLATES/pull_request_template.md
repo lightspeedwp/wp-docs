@@ -1,6 +1,24 @@
 ---
 name: Pull Request
 about: Standard template for all pull requests
+title: '[Type] Concise title describing the change'
+labels: ''
+assignees: ''
+milestones: ''
+branches: ''
+projects: ''
+body: |
+  ---
+    name: Pull Request
+    about: Standard template for all pull requests
+    title: '[Type] Concise title describing the change'
+    labels: ''
+    assignees: ''
+    milestones: ''
+    branches: ''
+    projects: ''
+    body: |
+  ---
 ---
 
 ## Description

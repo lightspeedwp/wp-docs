@@ -79,9 +79,13 @@
     },
     "editor.rulers": [100],
     "files.associations": {
+        "*.chatmodes.md": "markdown",
         "*.chatmode.md": "markdown",
         "*.instructions.md": "markdown",
+        "*.agents.md": "markdown",
         "*.agent.md": "markdown",
-        "*.prompt.md": "markdown"
+        "*.prompts.md": "markdown",
+        "*.prompt.md": "markdown",
+        "*.collection.yml": "yaml"
     }
 }

@@ -13,7 +13,7 @@ Empower WordPress developers to deliver production‑ready features at lightspee
 | Area                 | Path                     | Summary                                                             |
 | -------------------- | ------------------------ | ------------------------------------------------------------------- |
 | Documentation Hub    | `docs/`                  | Master index & cross-cutting conventions (see `docs/README.md`).    |
-| Copilot / AI Assets  | `docs/copilot-space/`    | Prompts, instructions, chat modes, agent schemas & authoring rules. |
+| Copilot / AI Assets  | `.github/`               | Prompts, instructions, chat modes, agents & authoring rules.        |
 | Block Theme Guidance | `docs/block-themes/`     | Fluid spacing, typography scales, global styles, naming, patterns.  |
 | Coding Standards     | `docs/coding-standards/` | WordPress coding standards overlays, inline docs, research notes.   |
 | Gutenberg Guides     | `docs/gutenberg/`        | Getting started, how‑tos, reference, schemas.                       |

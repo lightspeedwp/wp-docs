@@ -7,11 +7,13 @@ The following instructions are only to be applied when performing a code review 
 | Instruction | `*.instructions.md` | Global or contextual behavioural guidance (security, a11y, performance) | Passive, auto-applied based on location / applyTo | Improve baseline behaviour in reviews & generation |
 | Prompt | `*.prompts.md` (legacy: `*.prompt.md`) | Single-shot reusable task / template (e.g. generate spec, create README) | Invoked explicitly (`/name`) | Consistent task execution |
 | Chat Mode | `*.chatmodes.md` (legacy: `*.chatmode.md`) | Persistent conversational persona or workflow mode | Selected in chat UI | Extended multi-step behaviour |
+| Agent | `*.agents.md` | Specialised domain expert with specific knowledge and capabilities | Invoked as declarative agent | Domain-specific expertise and workflows |
 
 ### When to create what
 - Prefer an Instruction if behaviour should always apply (e.g. escaping, capability checks).
 - Prefer a Prompt if the output is a one-off artefact or transformation (e.g. implementation plan, architectural decision record).
 - Prefer a Chat Mode if you need sustained role framing, multi-phase process, or tool orchestration.
+- Prefer an Agent if you need specialised domain expertise with specific knowledge, capabilities, and workflows.
 
 ## 2. Extension Migration Policy
 
@@ -72,12 +74,33 @@ git add vendor/wp-docs
 git commit -m "chore: bump wp-docs library"
 ```
 
-## 5. Authoring Standards (Recap)
+## 5. WordPress Coding Standards Integration
+
+### Inline Documentation Standards
+
+All WordPress-related Copilot assets should reference and follow the official WordPress inline documentation standards:
+
+- **[WordPress Inline Documentation Standards](https://github.com/WordPress/wpcs-docs/blob/master/inline-documentation-standards.md)** - Core requirements for documenting WordPress code
+- **[PHP Inline Documentation](https://github.com/WordPress/wpcs-docs/blob/master/inline-documentation-standards/php.md)** - DocBlock standards for PHP functions, classes, and hooks
+- **[JavaScript Inline Documentation](https://github.com/WordPress/wpcs-docs/blob/master/inline-documentation-standards/javascript.md)** - JSDoc standards for JavaScript and block editor code
+- **[WordPress Styleguide](https://github.com/WordPress/wpcs-docs/blob/master/styleguide.md)** - General coding style and documentation conventions
+
+### Related Copilot Assets
+
+The following assets help implement WordPress documentation standards:
+
+- **Instruction**: `wordpress-inline-documentation.instructions.md` - Global documentation guidelines
+- **Prompt**: `wordpress-inline-documentation-generator.prompts.md` - Generate standards-compliant documentation
+- **Chat Mode**: `wordpress-documentation-expert.chatmodes.md` - Interactive documentation assistance
+- **Agent**: `wordpress-documentation-specialist.agents.md` - Specialized documentation agent
+
+## 6. Authoring Standards (Recap)
 Keep content DRY: reference existing instruction files instead of duplicating long guidance (e.g. link to `performance-optimization.instructions.md`).
 Prefer UK English spelling for documentation (per `AGENTS.md`).
 Security & accessibility expectations inherit from global instruction files automatically—do not restate unless adding nuance.
+WordPress documentation should always reference official WordPress coding standards rather than generic alternatives.
 
-## 6. Review Checklists (Updated for Plural Extensions)
+## 7. Review Checklists (Updated for Plural Extensions)
 
 ### README updates
 
@@ -115,7 +138,17 @@ Security & accessibility expectations inherit from global instruction files auto
 * [ ] If consolidating others, includes a short deprecation note & links.
 * [ ] No unbounded / unsafe autonomous claims (security posture maintained).
 
-## 7. Deprecation Stub Template
+### Agent File Guide
+
+**Applies to files ending in `*.agents.md`**
+
+* [ ] Markdown front matter with `description` (single quoted) & domain-specific `tools` list.
+* [ ] File name lowercase, hyphen-separated.
+* [ ] Specifies `model` when agent requires specific model capabilities.
+* [ ] Clearly defines domain expertise and scope of knowledge.
+* [ ] No unbounded / unsafe autonomous claims (security posture maintained).
+
+## 8. Deprecation Stub Template
 ```md
 ---
 license: 'GPL-3.0'
@@ -127,7 +160,7 @@ description: 'Deprecated – use new-file.chatmodes.md instead.'
 This file has been deprecated in favour of `new-file.chatmodes.md`.
 ```
 
-## 8. Quality Gates Summary
+## 9. Quality Gates Summary
 | Aspect | Minimum Expectation |
 |--------|---------------------|
 | Front Matter | Present, valid YAML, required keys filled |
@@ -137,7 +170,7 @@ This file has been deprecated in favour of `new-file.chatmodes.md`.
 | Accessibility | Encourages WCAG 2.2 AA where relevant |
 | Performance | Refers to optimisation instructions when optimisation tasks are involved |
 
-## 9. Future Removals
+## 10. Future Removals
 Legacy singular extension stubs will be purged in a future major release (proposed: v2) after a documented deprecation window. Consumers should migrate now.
 
 ---
@@ -147,9 +180,9 @@ Below are the original minimal checklists retained for continuity (updated to no
 
 * [ ] The new file should be added to the `README.md`.
 
-## (Legacy Section) Prompt file guide
+##  Prompt file guide
 
-**Only apply to files that end in `.prompts.md` (legacy: `.prompt.md`)**
+**Only apply to files that end in `.prompts.md`**
 
 * [ ] The prompt has markdown front matter.
 * [ ] The prompt has a `mode` field specified of either `agent` or `ask`.
@@ -171,9 +204,9 @@ Below are the original minimal checklists retained for continuity (updated to no
 * [ ] The file name is lower case, with words separated by hyphens.
 * [ ] The instruction has an `applyTo` field that specifies the file or files to which the instructions apply. If they wish to specify multiple file paths they should formated like `'**.js, **.ts'`.
 
-## (Legacy Section) Chat Mode file guide
+## Chat Mode file guide
 
-**Only apply to files that end in `.chatmodes.md` (legacy: `.chatmode.md`)**
+**Only apply to files that end in `.chatmodes.md`**
 
 * [ ] The chat mode has markdown front matter.
 * [ ] The chat mode has a `description` field.
@@ -182,3 +215,16 @@ Below are the original minimal checklists retained for continuity (updated to no
 * [ ] The file name is lower case, with words separated by hyphens.
 * [ ] Encourage the use of `tools`, but it's not required.
 * [ ] Strongly encourage the use of `model` to specify the model that the chat mode is optimised for.
+
+## Agent file guide
+
+**Only apply to files that end in `.agents.md`**
+
+* [ ] The agent has markdown front matter.
+* [ ] The agent has a `description` field.
+* [ ] The `description` field is not empty.
+* [ ] The `description` field value is wrapped in single quotes.
+* [ ] The file name is lower case, with words separated by hyphens.
+* [ ] Encourage the use of `tools`, but it's not required.
+* [ ] Strongly encourage the use of `model` to specify the model that the agent is optimised for.
+* [ ] Clearly defines domain expertise and capabilities.
