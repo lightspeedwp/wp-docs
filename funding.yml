@@ -1,0 +1,11 @@
+# GitHub Sponsors configuration for lightspeedwp organization
+# Support WordPress documentation and AI tooling development
+github: [lightspeedwp]
+
+# Additional sponsorship platforms
+# patreon: lightspeedwp
+# open_collective: lightspeedwp
+# ko_fi: lightspeedwp
+
+# Custom sponsorship links
+custom: ['https://lightspeedwp.agency/sponsor', 'https://lightspeedwp.agency/support']

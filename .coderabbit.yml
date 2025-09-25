@@ -2,8 +2,10 @@
 # Configuration tailored for wp-docs (WordPress block/theme documentation & Copilot asset library)
 # Reference: https://docs.coderabbit.ai/guides/configure-coderabbit/
 
+# Set review language to UK English to match repository documentation standards (see AGENTS.md)
 language: "en-GB" # Align with AGENTS.md (UK English for documentation); code identifiers remain unchanged.
 
+# Disable early access features for stable, consistent review experience
 early_access: false
 
 reviews:
@@ -13,6 +15,7 @@ reviews:
   review_status: true
   collapse_walkthrough: false
   poem: false
+  # Exclude paths that don't need review (dependencies, build outputs, temporary agent files)
   path_filters:
     - "!**/node_modules/**"
     - "!**/dist/**"
