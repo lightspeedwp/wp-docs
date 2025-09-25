@@ -5,43 +5,39 @@ license: "GPL-3.0"
 tags: [planning, project-management, epic, feature, implementation, task, architecture, technical-spike]
 items:
   # Planning Chat Modes
-  - path: chatmodes/task-planner.chatmode.md
+  - path: .github/chatmodes/task-planner.chatmodes.md
     kind: chat-mode
-  - path: chatmodes/task-researcher.chatmode.md
+  - path: .github/chatmodes/task-researcher.chatmodes.md
     kind: chat-mode
-  - path: chatmodes/planner.chatmode.md
+  - path: .github/chatmodes/planner.chatmodes.md
     kind: chat-mode
-  - path: chatmodes/plan.chatmode.md
+  - path: .github/chatmodes/plan.chatmodes.md
     kind: chat-mode
-  - path: chatmodes/prd.chatmode.md
-    kind: chat-mode
-  - path: chatmodes/implementation-plan.chatmode.md
-    kind: chat-mode
-  - path: chatmodes/research-technical-spike.chatmode.md
+  - path: .github/chatmodes/implementation-plan.chatmodes.md
     kind: chat-mode
 
   # Planning Instructions
-  - path: instructions/task-implementation.instructions.md
+  - path: .github/instructions/task-implementation.instructions.md
     kind: instruction
-  - path: instructions/spec-driven-workflow-v1.instructions.md
+  - path: .github/instructions/spec-driven-workflow-v1.instructions.md
     kind: instruction
 
   # Planning Prompts
-  - path: prompts/breakdown-feature-implementation.prompt.md
+  - path: .github/prompts/breakdown-feature-implementation.prompts.md
     kind: prompt
-  - path: prompts/breakdown-feature-prd.prompt.md
+  - path: .github/prompts/breakdown-feature-prd.prompts.md
     kind: prompt
-  - path: prompts/breakdown-epic-arch.prompt.md
+  - path: .github/prompts/breakdown-epic-arch.prompts.md
     kind: prompt
-  - path: prompts/breakdown-epic-pm.prompt.md
+  - path: .github/prompts/breakdown-epic-pm.prompts.md
     kind: prompt
-  - path: prompts/create-implementation-plan.prompt.md
+  - path: .github/prompts/create-implementation-plan.prompts.md
     kind: prompt
-  - path: prompts/update-implementation-plan.prompt.md
+  - path: .github/prompts/update-implementation-plan.prompts.md
     kind: prompt
-  - path: prompts/create-github-issues-feature-from-implementation-plan.prompt.md
+  - path: .github/prompts/create-github-issues-feature-from-implementation-plan.prompts.md
     kind: prompt
-  - path: prompts/create-technical-spike.prompt.md
+  - path: .github/prompts/create-technical-spike.prompts.md
     kind: prompt
 
 display:

@@ -1,16 +1,128 @@
+﻿# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# Configuration tailored for wp-docs (WordPress block/theme documentation & Copilot asset library)
+# Reference: https://docs.coderabbit.ai/guides/configure-coderabbit/
+
+language: "en-GB" # Align with AGENTS.md (UK English for documentation); code identifiers remain unchanged.
+
+early_access: false
+
 reviews:
+  profile: "balanced"
+  request_changes_workflow: true
+  high_level_summary: true
+  review_status: true
+  collapse_walkthrough: false
+  poem: false
+  path_filters:
+    - "!**/node_modules/**"
+    - "!**/dist/**"
+    - "!**/.agent_work/**"
+  auto_review:
+    enabled: true
+    drafts: false
+    ignore_title_keywords:
+      - "WIP"
+      - "DO NOT MERGE"
+    base_branches:
+      - main
+      - develop
+      - docs/*
+      - instructions/*
+      - prompts/*
+      - chatmodes/*
+      - chore/*
+
+  # Targeted instruction sets per path
   path_instructions:
     - path: "**/*.md"
       instructions: |
-        Review the Markdown documentation for:
-        - Clarity and conciseness of explanations
-        - Consistent formatting and heading structure
-        - Proper use of code blocks and inline code
-        - Correct spelling, grammar, and punctuation
-        - Accurate and up-to-date technical information
-        - Useful internal and external links
-        - Well-organized sections and logical flow
-        
-  Additional context:
-  - The repository contains documentation focused on block theme and block plug-in development topics for WordPress and related technologies.
-  - Please ensure that technical docs are developer-friendly, accurate, and up-to-date.
+        Documentation Review Focus:
+        - One sentence per line where practical (improves diff clarity)
+        - Clear hierarchy (h1 once; meaningful h2/h3 order; no level skipping)
+        - UK English spelling (colour, organisation, behaviour) except in code/API examples
+        - Accessibility & inclusivity of examples (avoid ableist / gendered assumptions)
+        - Accuracy: WordPress APIs, Gutenberg block concepts, theme.json tokens
+        - Remove duplication; prefer canonical cross-links instead of copy/paste
+        - Ensure internal links resolve (relative paths) & external links use HTTPS
+        - For long lists: consider tables for scanability; ensure no trailing placeholder text
+        - For code samples: prefer minimal, runnable, security-conscious examples (escaping, sanitisation)
+        Reject only for: factual errors, unsafe patterns, structural incoherence—not minor stylistic opinions.
+    - path: ".github/instructions/*.instructions.md"
+      instructions: |
+        Instruction Files Review:
+        - Front matter: description (single quoted), applyTo pattern present
+        - Scope clarity: no overlap with other instruction files without rationale
+        - Consistency with existing security/a11y/performance standards
+        - Avoid redundancy—reference shared guidance instead of restating
+        - Ensure examples use current WordPress APIs & escaping (esc_html, esc_attr, wp_kses_post)
+        - Flag ambiguous or aspirational language (“probably”, “maybe”)—prefer imperative clarity
+    - path: ".github/prompts/*.prompts.md"
+      instructions: |
+        Prompt Files Review:
+        - Front matter: description, mode (agent|ask), encourage model & tools fields
+        - Name reflects task (lowercase-hyphen) & not a duplicate of existing prompt
+        - Body: single authoritative task pattern; avoid multi‑persona drift
+        - No hidden side effects (should not instruct destructive repository changes unless clearly labelled)
+        - Ensure migration: legacy .prompt.md references removed or marked deprecated
+    - path: ".github/chatmodes/*.chatmodes.md"
+      instructions: |
+        Chat Modes Review:
+        - Front matter includes description & optional tools list sized to stated purpose
+        - No overlap with consolidated modes (e.g., planning, accessibility) unless extension is explicit
+        - Deprecation blocks present for replaced variants (deprecated: true, replacement: <file>)
+        - Check persona scope creep (avoid over-promising omnipotent abilities)
+        - Security: discourage broad autonomous destructive behaviour
+    - path: ".github/scripts/*.js"
+      instructions: |
+        Script Review:
+        - Focus: correctness, idempotence, error handling, path safety
+        - Avoid unnecessary fs sync loops in hot paths (acceptable for small repo generation tasks)
+        - Ensure backward compatibility notes retained during migrations
+        - Prefer descriptive constant names over comments explaining magic values
+    - path: ".github/workflows/*.yml"
+      instructions: |
+        Workflow Review:
+        - Principle of least privilege (scoped permissions: contents: read where possible)
+        - Caching correctness (restore-keys order, hash input stability)
+        - No plaintext secrets; encourage use of secrets store
+        - Matrix limits reasonable; avoid unbounded strategy expansion
+    - path: "**/*.php"
+      instructions: |
+        PHP Review (WordPress Focus):
+        - Input sanitisation (sanitize_text_field, esc_url_raw, absint) & output escaping (esc_html/esc_attr) applied appropriately
+        - Capability checks (current_user_can) instead of role names
+        - Nonces for state‑changing actions; verify with check_admin_referer
+        - Avoid direct access to superglobals in templates—wrap in helper functions
+        - Performance: no unbounded WP_Query loops; leverage caching where justified
+    - path: "**/*.js"
+      instructions: |
+        JavaScript Review:
+        - No direct innerHTML with unsanitised content
+        - Avoid large synchronous operations blocking main thread
+        - Prefer WP packages (@wordpress/*) over reinventing editor APIs
+        - Accessibility: focus management on dynamic components; ARIA only if semantics missing
+    - path: "**/*.py"
+      instructions: |
+        Python Review:
+        - Note: _, pgettext, ngettext variations are globally defined (ignore undefined warnings)
+        - Prefer pathlib & context managers; parameterise any SQL; no shell string concatenation
+    - path: "user_docs/en/changes.md"
+      instructions: |
+        Changelog Review:
+        - Each entry links an issue or PR (#123) and optional @author handle
+        - Group multi-line entries under a bullet with sub-items
+        - No future tense for released changes; use past or imperative for unreleased
+
+  reviewers:
+    - default
+
+tools:
+  github-checks:
+    enabled: true
+  ruff:
+    enabled: true
+  markdownlint:
+    enabled: true
+
+chat:
+  auto_reply: true

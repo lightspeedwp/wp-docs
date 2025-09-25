@@ -1,29 +1,8 @@
 ---
-mode: 'agent'
-description: 'Create GitHub Issues from implementation plan phases using feature_request.yml or chore_request.yml templates.'
-tools: ['codebase', 'search', 'github', 'create_issue', 'search_issues', 'update_issue']
 license: 'GPL-3.0'
+deprecated: true
+replacement: create-github-issues-feature-from-implementation-plan.prompts.md
+description: 'Deprecated – use create-github-issues-feature-from-implementation-plan.prompts.md instead.'
 ---
-# Create GitHub Issue from Implementation Plan
 
-Create GitHub Issues for the implementation plan at `${file}`.
-
-## Process
-
-1. Analyse plan file to identify phases
-2. Check existing issues using `search_issues`
-3. Create new issue per phase using `create_issue` or update existing with `update_issue`
-4. Use `feature_request.yml` or `chore_request.yml` templates (fallback to default)
-
-## Requirements
-
-- One issue per implementation phase
-- Clear, structured titles and descriptions
-- Include only changes required by the plan
-- Verify against existing issues before creation
-
-## Issue Content
-
-- Title: Phase name from implementation plan
-- Description: Phase details, requirements, and context
-- Labels: Appropriate for issue type (feature/chore)
+This file has been migrated to **create-github-issues-feature-from-implementation-plan.prompts.md**. Update any references.

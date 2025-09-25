@@ -15,11 +15,17 @@ const TEMPLATES = {
 	chatmodesUsage: `### How to Use Custom Chat Modes\n\n**To Install:**\n- Click the **VS Code** or **VS Code Insiders** install button for the chat mode you want to use\n- Download the \`*.chatmode.md\` file and manually install it in VS Code using the Command Palette\n\n**To Activate/Use:**\n- Import the chat mode configuration into your VS Code settings\n- Access the installed chat modes through the VS Code Chat interface\n- Select the desired chat mode from the available options in VS Code Chat`,
 	collectionsSection: `## 📦 Collections\n\nCurated collections of related prompts, instructions, and chat modes organized around specific themes, workflows, or use cases.`,
 	collectionsUsage: `### How to Use Collections\n\n**Browse Collections:**\n- Explore themed collections that group related customizations\n- Each collection includes prompts, instructions, and chat modes for specific workflows\n- Collections make it easy to adopt comprehensive toolkits for particular scenarios\n\n**Install Items:**\n- Click install buttons for individual items within collections\n- Or browse to the individual files to copy content manually\n- Collections help you discover related customizations you might have missed`,
+	agentsSection: `## 🤖 WordPress-Focused Agents\n\nSpecialized GitHub Copilot agents designed for WordPress development workflows, each focusing on specific domains like accessibility, performance, security, and block/theme development.`,
+	agentsUsage: `### How to Use WordPress Agents\n\n**To Reference:**\n- Each agent defines specialized behavior for WordPress development domains\n- Agents complement the global behavioral contract defined in [\`AGENTS.md\`](../../AGENTS.md)\n- Use agents as reference for specialized WordPress workflows and best practices\n\n**To Create New Agents:**\n- Copy the [\`TEMPLATE.agent.md\`](TEMPLATE.agent.md) file to create new specialized agents\n- Follow the WordPress-focused guidelines and YAML frontmatter structure\n- Ensure new agents align with WordPress coding standards and security practices`,
 };
 
 function safeFileOperation(operation, filePath, defaultValue = null) {
 	try { return operation(); } catch (error) { console.error(`Error processing file ${filePath}: ${error.message}`); return defaultValue; }
 }
+
+const LEGACY_EXT_PATTERN = /(\.prompt|\.chatmode|\.instructions|\.agent)\.md$/;
+const CURRENT_EXT_PATTERN = /(\.prompts|\.chatmodes|\.instructions|\.agents)\.md$/;
+const AGENT_EXT_PATTERN = /(\.agent|\.agents)\.md$/;
 
 function extractTitle(filePath) {
 	return safeFileOperation(() => {
@@ -34,12 +40,12 @@ function extractTitle(filePath) {
 			}
 		}
 		inFM = false; fmDone = false;
-		if (/(\.prompt|\.chatmode|\.instructions)\.md$/.test(filePath)) {
+		if (CURRENT_EXT_PATTERN.test(filePath) || LEGACY_EXT_PATTERN.test(filePath) || AGENT_EXT_PATTERN.test(filePath)) {
 			for (const line of lines) {
 				if (line.trim() === '---') { if (!inFM) inFM = true; else if (inFM && !fmDone) fmDone = true; continue; }
 				if (fmDone && line.startsWith('# ')) return line.substring(2).trim();
 			}
-			const base = path.basename(filePath).replace(/(\.prompt|\.chatmode|\.instructions)\.md$/, '');
+			const base = path.basename(filePath).replace(/(\.prompts|\.prompt|\.chatmodes|\.chatmode|\.instructions|\.agent|\.agents)\.md$/, '');
 			return base.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 		}
 		for (const line of lines) if (line.startsWith('# ')) return line.substring(2).trim();
@@ -100,7 +106,8 @@ function generateInstructionsSection(dir, opts = {}) {
 }
 
 function generatePromptsSection(dir, opts = {}) {
-	const { linkPrefixForDisplay = "prompts" } = opts; if (!fs.existsSync(dir)) return ""; const files = fs.readdirSync(dir).filter(f => f.endsWith('.prompt.md')).sort();
+	const { linkPrefixForDisplay = "prompts" } = opts; if (!fs.existsSync(dir)) return "";
+	const files = fs.readdirSync(dir).filter(f => f.endsWith('.prompts.md') || f.endsWith('.prompt.md')).sort();
 	let out = "| Title | Description |\n| ----- | ----------- |\n";
 	for (const file of files) { const fp = path.join(dir, file); if (isDeprecated(fp)) { console.log(`Skipping deprecated prompt: ${file}`); continue; }
 		const title = extractTitle(fp); const display = linkPrefixForDisplay ? encodeURI(`${linkPrefixForDisplay}/${file}`) : encodeURI(file); const raw = encodeURI(`prompts/${file}`); const desc = extractDescription(fp); const badges = makeBadges(raw, 'prompt'); out += `| [${title}](${display})<br />${badges} | ${desc && desc !== 'null' ? desc : ''} |\n`; }
@@ -109,7 +116,7 @@ function generatePromptsSection(dir, opts = {}) {
 
 function generateChatModesSection(dir, opts = {}) {
 	const { linkPrefixForDisplay = "chatmodes" } = opts; if (!fs.existsSync(dir)) { console.log('Chat modes directory does not exist'); return ""; }
-	const files = fs.readdirSync(dir).filter(f => f.endsWith('.chatmode.md')).sort(); let out = "| Title | Description |\n| ----- | ----------- |\n";
+	const files = fs.readdirSync(dir).filter(f => f.endsWith('.chatmodes.md') || f.endsWith('.chatmode.md')).sort(); let out = "| Title | Description |\n| ----- | ----------- |\n";
 	for (const file of files) { const fp = path.join(dir, file); if (isDeprecated(fp)) { console.log(`Skipping deprecated chat mode: ${file}`); continue; }
 		const title = extractTitle(fp); const display = linkPrefixForDisplay ? encodeURI(`${linkPrefixForDisplay}/${file}`) : encodeURI(file); const raw = encodeURI(`chatmodes/${file}`); const desc = extractDescription(fp); const badges = makeBadges(raw, 'mode'); out += `| [${title}](${display})<br />${badges} | ${desc && desc !== 'null' ? desc : ''} |\n`; }
 	return `${TEMPLATES.chatmodesSection}\n${TEMPLATES.chatmodesUsage}\n\n${out}`;
@@ -121,6 +128,44 @@ function generateCollectionsSection(dir, opts = {}) {
 	for (const file of files) { const fp = path.join(dir, file); const col = parseCollectionYaml(fp); if (!col) { console.warn(`Failed to parse collection: ${file}`); continue; }
 		const id = col.id || path.basename(file, '.collection.yml'); const name = col.name || id; const desc = col.description || 'No description'; const count = col.items ? col.items.length : 0; const tags = col.tags ? col.tags.join(', ') : ''; const display = linkPrefixForDisplay ? `${linkPrefixForDisplay}/${id}.md` : `${id}.md`; out += `| [${name}](${display}) | ${desc} | ${count} items | ${tags} |\n`; }
 	return `${TEMPLATES.collectionsSection}\n${TEMPLATES.collectionsUsage}\n\n${out}`;
+}
+
+function generateAgentsSection(dir, opts = {}) {
+	const { linkPrefixForDisplay = "agents" } = opts;
+	if (!fs.existsSync(dir)) return "";
+	const files = fs.readdirSync(dir).filter(f => f.endsWith('.agent.md') && f !== 'TEMPLATE.agent.md').sort();
+	let out = "| Agent | Domain | Description |\n| ----- | ------ | ----------- |\n";
+	for (const file of files) {
+		const fp = path.join(dir, file);
+		if (isDeprecated(fp)) {
+			console.log(`Skipping deprecated agent: ${file}`);
+			continue;
+		}
+		const title = extractTitle(fp);
+		const display = linkPrefixForDisplay ? encodeURI(`${linkPrefixForDisplay}/${file}`) : encodeURI(file);
+		const desc = extractDescription(fp);
+
+		// Extract domain from YAML frontmatter
+		const domain = safeFileOperation(() => {
+			const content = fs.readFileSync(fp, 'utf8');
+			const lines = content.split('\n');
+			let inFM = false;
+			for (const line of lines) {
+				if (line.trim() === '---') {
+					if (!inFM) { inFM = true; continue; }
+					break;
+				}
+				if (inFM) {
+					const domainMatch = line.match(/^domain:\s*['"]?(.+?)['"]?\s*$/);
+					if (domainMatch) return domainMatch[1];
+				}
+			}
+			return 'wp-core';
+		}, fp, 'wp-core');
+
+		out += `| [${title}](${display}) | ${domain} | ${desc && desc !== 'null' ? desc : ''} |\n`;
+	}
+	return `${TEMPLATES.agentsSection}\n${TEMPLATES.agentsUsage}\n\n${out}`;
 }
 
 function generateCollectionReadme(collection, collectionId) {
@@ -140,30 +185,35 @@ function buildCategoryReadme(sectionBuilder, dirPath, headerLine, usageLine) { c
 try {
 	console.log('Generating category README files...');
 	const repoRoot = path.join(__dirname, '..', '..');
-	const instructionsDir = path.join(repoRoot, 'instructions');
-	const promptsDir = path.join(repoRoot, 'prompts');
-	const chatmodesDir = path.join(repoRoot, 'chatmodes');
-	const collectionsDir = path.join(repoRoot, 'collections');
 	const ghBase = path.join(repoRoot, '.github');
+	const instructionsDir = path.join(ghBase, 'instructions');
+	const promptsDir = path.join(ghBase, 'prompts');
+	const chatmodesDir = path.join(ghBase, 'chatmodes');
+	const collectionsDir = path.join(ghBase, 'collections');
+	const agentsDir = path.join(ghBase, 'agents');
 	const targets = {
 		instructions: path.join(ghBase, 'instructions', 'README.instructions.md'),
 		prompts: path.join(ghBase, 'prompts', 'README.prompts.md'),
 		chatmodes: path.join(ghBase, 'chatmodes', 'README.chatmodes.md'),
-		collections: path.join(ghBase, 'collections', 'README.collections.md')
+		collections: path.join(ghBase, 'collections', 'README.collections.md'),
+		agents: path.join(ghBase, 'agents', 'README.md')
 	};
 	Object.values(targets).forEach(fp => fs.mkdirSync(path.dirname(fp), { recursive: true }));
 	const iHead = TEMPLATES.instructionsSection.replace(/^##\s/m, '# ');
 	const pHead = TEMPLATES.promptsSection.replace(/^##\s/m, '# ');
 	const cHead = TEMPLATES.chatmodesSection.replace(/^##\s/m, '# ');
 	const colHead = TEMPLATES.collectionsSection.replace(/^##\s/m, '# ');
+	const agentsHead = TEMPLATES.agentsSection.replace(/^##\s/m, '# ');
 	const instructionsReadme = buildCategoryReadme((d)=>generateInstructionsSection(d,{linkPrefixForDisplay:""}), instructionsDir, iHead, TEMPLATES.instructionsUsage);
 	const promptsReadme = buildCategoryReadme((d)=>generatePromptsSection(d,{linkPrefixForDisplay:""}), promptsDir, pHead, TEMPLATES.promptsUsage);
 	const chatmodesReadme = buildCategoryReadme((d)=>generateChatModesSection(d,{linkPrefixForDisplay:""}), chatmodesDir, cHead, TEMPLATES.chatmodesUsage);
 	const collectionsReadme = buildCategoryReadme((d)=>generateCollectionsSection(d,{linkPrefixForDisplay:""}), collectionsDir, colHead, TEMPLATES.collectionsUsage);
+	const agentsReadme = buildCategoryReadme((d)=>generateAgentsSection(d,{linkPrefixForDisplay:""}), agentsDir, agentsHead, TEMPLATES.agentsUsage);
 	writeFileIfChanged(targets.instructions, instructionsReadme);
 	writeFileIfChanged(targets.prompts, promptsReadme);
 	writeFileIfChanged(targets.chatmodes, chatmodesReadme);
 	writeFileIfChanged(targets.collections, collectionsReadme);
+	writeFileIfChanged(targets.agents, agentsReadme);
 	if (fs.existsSync(collectionsDir)) {
 		console.log('Generating individual collection README files...');
 		const collectionFiles = fs.readdirSync(collectionsDir).filter(f=>f.endsWith('.collection.yml'));

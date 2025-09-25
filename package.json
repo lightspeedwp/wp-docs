@@ -12,12 +12,12 @@
     "lint:md": "markdownlint '**/*.md' --ignore node_modules",
     "lint:js": "eslint '**/*.js' --ignore-path .gitignore",
     "lint:css": "stylelint '**/*.{css,scss}' --ignore-path .gitignore",
-    "lint:agents": "node scripts/lint-agents.js",
+    "lint:agents": "node .github/scripts/lint-agents.js",
     "lint:fix": "npm run lint:md -- --fix && npm run lint:js -- --fix && npm run lint:css -- --fix && npm run format",
     "format": "prettier --write '**/*.{js,json,md,yml,yaml}' --ignore-path .gitignore",
     "format:check": "prettier --check '**/*.{js,json,md,yml,yaml}' --ignore-path .gitignore",
-    "lang:en-gb": "node scripts/en-gb-normalise.js",
-    "lang:en-gb:apply": "node scripts/en-gb-normalise.js --apply"
+    "lang:en-gb": "node .github/scripts/en-gb-normalise.js",
+    "lang:en-gb:apply": "node .github/scripts/en-gb-normalise.js --apply"
   },
   "repository": {
     "type": "git",
