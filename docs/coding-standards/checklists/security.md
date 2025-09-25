@@ -1,0 +1,4 @@
+- [ ] Sanitize input
+- [ ] Escape output
+- [ ] Nonces/cap checks
+- [ ] Prepared SQL

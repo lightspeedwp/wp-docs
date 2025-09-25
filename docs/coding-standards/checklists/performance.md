@@ -1,0 +1,4 @@
+- [ ] Efficient selectors/queries
+- [ ] Bundle size ok
+- [ ] Defer/async safe
+- [ ] Cache where useful

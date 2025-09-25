@@ -1,0 +1,28 @@
+{
+  "extends": "markdownlint/style/prettier",
+  "line-length": {
+    "line_length": 100,
+    "code_blocks": false,
+    "tables": false,
+    "headings": false
+  },
+  "no-duplicate-heading": {
+    "siblings_only": true
+  },
+  "no-inline-html": {
+    "allowed_elements": [
+      "br",
+      "kbd",
+      "details",
+      "summary",
+      "img"
+    ]
+  },
+  "no-bare-urls": false,
+  "no-emphasis-as-heading": false,
+  "first-line-heading": false,
+  "fenced-code-language": false,
+  "no-multiple-blanks": {
+    "maximum": 2
+  }
+}

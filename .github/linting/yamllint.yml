@@ -1,0 +1,15 @@
+extends: default
+
+rules:
+  line-length:
+    max: 100
+    level: warning
+  document-start: disable
+  truthy:
+    allowed-values: ['true', 'false', 'on', 'off']
+  comments:
+    min-spaces-from-content: 1
+  indentation:
+    spaces: 2
+  key-duplicates: enable
+  new-line-at-end-of-file: enable

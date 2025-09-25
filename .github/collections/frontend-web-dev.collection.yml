@@ -1,34 +1,17 @@
 id: frontend-web-dev
 name: Frontend Web Development
 description: Essential prompts, instructions, and chat modes for modern frontend web development including React, Angular, Vue, TypeScript, and CSS frameworks.
-license: "GPL-3.0"tags: [frontend, web, react, typescript, javascript, css, html, angular, vue]
+license: "GPL-3.0"
+tags: [frontend, web, react, typescript, javascript, css, html, angular, vue]
 items:
-  # Expert Chat Modes
-  - path: chatmodes/expert-react-frontend-engineer.chatmode.md
-    kind: chat-mode
-  - path: chatmodes/electron-angular-native.chatmode.md
-    kind: chat-mode
-
   # Development Instructions
-  - path: instructions/reactjs.instructions.md
-    kind: instruction
-  - path: instructions/angular.instructions.md
-    kind: instruction
-  - path: instructions/vuejs3.instructions.md
-    kind: instruction
-  - path: instructions/nextjs.instructions.md
-    kind: instruction
-  - path: instructions/nextjs-tailwind.instructions.md
-    kind: instruction
-  - path: instructions/tanstack-start-shadcn-tailwind.instructions.md
-    kind: instruction
-  - path: instructions/nodejs-javascript-vitest.instructions.md
+  - path: .github/instructions/nodejs-javascript-vitest.instructions.md
     kind: instruction
 
   # Prompts
-  - path: prompts/playwright-explore-website.prompt.md
+  - path: .github/prompts/playwright-explore-website.prompts.md
     kind: prompt
-  - path: prompts/playwright-generate-test.prompt.md
+  - path: .github/prompts/playwright-generate-test.prompts.md
     kind: prompt
 
 display:

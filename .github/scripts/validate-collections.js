@@ -43,12 +43,14 @@ function validateCollectionItems(items){
 		if(!item||typeof item!=="object") return `Item ${i+1} must be an object`;
 		if(!item.path||typeof item.path!=="string") return `Item ${i+1} must have a path string`;
 		if(!item.kind||typeof item.kind!=="string") return `Item ${i+1} must have a kind string`;
-		if(!['prompt','instruction','chat-mode'].includes(item.kind)) return `Item ${i+1} kind must be one of: prompt, instruction, chat-mode`;
+		if(!['prompt','instruction','chat-mode','agent'].includes(item.kind)) return `Item ${i+1} kind must be one of: prompt, instruction, chat-mode, agent`;
 		const filePath = path.join(process.cwd(), item.path);
 		if(!fs.existsSync(filePath)) return `Item ${i+1} file does not exist: ${item.path}`;
-		if(item.kind==='prompt' && !item.path.endsWith('.prompt.md')) return `Item ${i+1} kind is "prompt" but path doesn't end with .prompt.md`;
+		// Support both legacy (.prompt.md / .chatmode.md / .agent.md) and new plural (.prompts.md / .chatmodes.md / .agents.md) extensions during migration
+		if(item.kind==='prompt' && !(item.path.endsWith('.prompt.md') || item.path.endsWith('.prompts.md'))) return `Item ${i+1} kind is "prompt" but path doesn't end with .prompt.md or .prompts.md`;
 		if(item.kind==='instruction' && !item.path.endsWith('.instructions.md')) return `Item ${i+1} kind is "instruction" but path doesn't end with .instructions.md`;
-		if(item.kind==='chat-mode' && !item.path.endsWith('.chatmode.md')) return `Item ${i+1} kind is "chat-mode" but path doesn't end with .chatmode.md`;
+		if(item.kind==='chat-mode' && !(item.path.endsWith('.chatmode.md') || item.path.endsWith('.chatmodes.md'))) return `Item ${i+1} kind is "chat-mode" but path doesn't end with .chatmode.md or .chatmodes.md`;
+		if(item.kind==='agent' && !(item.path.endsWith('.agent.md') || item.path.endsWith('.agents.md'))) return `Item ${i+1} kind is "agent" but path doesn't end with .agent.md or .agents.md`;
 	}
 	return null;
 }
@@ -72,7 +74,7 @@ function validateCollectionManifest(c, fp){
 	return errors;
 }
 function validateCollections(){
-	const collectionsDir = path.join(process.cwd(), 'collections');
+	const collectionsDir = path.join(process.cwd(), '.github', 'collections');
 	if(!fs.existsSync(collectionsDir)){ console.log('No collections directory found - validation skipped'); return true; }
 	const collectionFiles = fs.readdirSync(collectionsDir).filter(f=>f.endsWith('.collection.yml'));
 	if(!collectionFiles.length){ console.log('No collection files found - validation skipped'); return true; }

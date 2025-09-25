@@ -1,0 +1,4 @@
+---
+mode: edit
+---
+# Shortcode Prompt

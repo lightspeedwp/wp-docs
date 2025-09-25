@@ -1,0 +1,1 @@
+- Tabs; braces same line; Yoda; sanitize/escape; `$wpdb->prepare()`; namespaces/PSR-4; DI over singletons; prefix globals `lsx_`.

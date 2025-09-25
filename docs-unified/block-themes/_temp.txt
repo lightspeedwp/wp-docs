@@ -1,0 +1,348 @@
+# Standardising Colours, Spacing, and Typography in Block Themes
+
+A predictable, token-based system for **colours, spacing, and typography** helps ensure consistency across design, WordPress editor UI, and front-end rendering. WordPress provides **default presets**, which can be enabled, overridden, or extended to match your design system.
+
+---
+
+## WordPress Default Font Size Slugs
+WordPress ships with four core font sizes:
+
+- `small`
+- `medium`
+- `large`
+- `x-large`
+
+## WordPress Default Spacing Slugs
+The default spacing scale is numeric and increments by 10:
+
+- `spacing-10`
+- `spacing-20`
+- `spacing-30`
+- `spacing-40`
+- `spacing-50`
+- `spacing-60`
+
+(These correspond to approximate values from `0.125rem` to `3rem`, though values may vary by theme implementation.)
+
+### Extended Spacing Scale
+
+We extend this with additional slugs to cover larger gaps, while **keeping naming consistent**:
+
+- `spacing-70` → `3.5rem` (56px)  
+- `spacing-80` → `4rem` (64px)  
+- `spacing-90` → `4.5rem` (72px)  
+- `spacing-100` → `5rem` (80px)  
+
+## Extended Spacing Scale
+
+We extend this with additional slugs to cover larger gaps, while **keeping naming consistent**:
+
+- `spacing-70` → `3.5rem` (56px)  
+- `spacing-80` → `4rem` (64px)  
+- `spacing-90` → `4.5rem` (72px)  
+- `spacing-100` → `5rem` (80px)  
+
+---
+
+### Example JSON
+
+```json
+"spacing": {
+  "spacingScale": {
+    "steps": [
+      { "slug": "spacing-10", "size": "0.625rem", "name": "10px" },
+      { "slug": "spacing-20", "size": "1.25rem", "name": "20px" },
+      { "slug": "spacing-30", "size": "1.875rem", "name": "30px" },
+      { "slug": "spacing-40", "size": "2.5rem", "name": "40px" },
+      { "slug": "spacing-50", "size": "3.125rem", "name": "50px" },
+      { "slug": "spacing-60", "size": "3.75rem", "name": "60px" },
+      { "slug": "spacing-70", "size": "3.5rem", "name": "56px" },
+      { "slug": "spacing-80", "size": "4rem", "name": "64px" },
+      { "slug": "spacing-90", "size": "4.5rem", "name": "72px" },
+      { "slug": "spacing-100", "size": "5rem", "name": "80px" }
+    ]
+  }
+}
+```
+
+---
+
+## Extending with Custom Tokens
+
+You can extend the defaults with **semantic tokens** (e.g. `brand-primary`, `gigantic`) while **keeping WP defaults enabled** for editor familiarity.
+
+Best practice:
+- **Keep slugs stable** (so editor UI remains predictable).
+- **Override values** (so the design system reflects your scale).
+- **Add extra sizes only where needed** (to avoid clutter).
+
+---
+
+## Example `theme.json` Partial
+
+This example uses:
+
+- **Colour tokens**: semantic naming (`brand-primary`, `neutral-100`).  
+- **Spacing scale**: multiples of 8px → `0.5rem`, `1rem`, `2rem`, etc.  
+- **Typography scale**: includes extra sizes (`x-tiny`, `tiny`, `huge`, `gigantic`) also based on multiples of 8px.
+
+```json
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        { "slug": "brand-primary", "name": "Brand Primary", "color": "#0047AB" },
+        { "slug": "brand-secondary", "name": "Brand Secondary", "color": "#FF6F00" },
+        { "slug": "neutral-100", "name": "Neutral 100", "color": "#F5F5F5" },
+        { "slug": "neutral-900", "name": "Neutral 900", "color": "#111111" }
+      ]
+    },
+    "spacing": {
+      "spacingScale": {
+        "steps": [
+          { "slug": "spacing-8", "size": "0.5rem", "name": "8px" },
+          { "slug": "spacing-16", "size": "1rem", "name": "16px" },
+          { "slug": "spacing-24", "size": "1.5rem", "name": "24px" },
+          { "slug": "spacing-32", "size": "2rem", "name": "32px" },
+          { "slug": "spacing-40", "size": "2.5rem", "name": "40px" },
+          { "slug": "spacing-48", "size": "3rem", "name": "48px" },
+          { "slug": "spacing-64", "size": "4rem", "name": "64px" },
+          { "slug": "spacing-80", "size": "5rem", "name": "80px" }
+        ]
+      }
+    },
+    "typography": {
+      "fontSizes": [
+        { "slug": "x-tiny", "size": "0.5rem", "name": "X-Tiny (8px)" },
+        { "slug": "tiny", "size": "0.75rem", "name": "Tiny (12px)" },
+        { "slug": "small", "size": "0.875rem", "name": "Small (14px)" },
+        { "slug": "medium", "size": "1rem", "name": "Medium (16px)" },
+        { "slug": "large", "size": "1.25rem", "name": "Large (20px)" },
+        { "slug": "x-large", "size": "1.5rem", "name": "X-Large (24px)" },
+        { "slug": "huge", "size": "2rem", "name": "Huge (32px)" },
+        { "slug": "gigantic", "size": "3rem", "name": "Gigantic (48px)" }
+      ]
+    }
+  }
+}
+
+
+---
+
+````markdown
+# Global Styles and theme.json
+
+Describes how to use `theme.json` for global styles, design tokens, and editor/front-end parity in block themes.
+
+---
+
+## Best practices
+
+- Use `theme.json` as the single source of truth for **site-wide styles** and editor/front-end consistency.
+- Treat it as a **design system definition file** (colours, typography, spacing, layout, etc.).
+- Define **design tokens** in `settings` (e.g., font sizes, spacing presets, custom line-heights).
+- Use `styles` to apply global defaults, ensuring authors see the same result in both the Site Editor and front end.
+- Leverage `style variations` within `theme.json` to offer alternate themes/skins without extra CSS files.
+- Combine with **patterns** and **style variations** for modular theme composition.
+
+Example: adding custom line-height tokens
+
+```json
+{
+  "settings": {
+    "custom": {
+      "lineHeight": { "sm": 1.625, "md": 1.6875, "lg": 1.5 }
+    }
+  }
+}
+````
+
+---
+
+## When to use
+
+
+---
+
+## Limitations
+
+
+---
+
+## Key lessons from Rich Tabor’s “Full Site Editing”
+
+
+---
+
+## Reference Links
+
+
+
+```
+
+---
+
+Ash, do you want me to **split this into smaller `.md` docs** (e.g. `best-practices.md`, `limitations.md`, `when-to-use.md`) for modular GitHub documentation, or keep everything bundled in `global-styles.md`?
+```
+
+
+### Want me to scaffold the `.md` files now with these seeds and drop in your `/styles/block/section-1…9.json` as examples?
+
+[1]: https://developer.wordpress.org/news/2024/06/21/styling-sections-nested-elements-and-more-with-block-style-variations-in-wordpress-6-6/ "Styling sections, nested elements, and more with Block Style Variations in WordPress 6.6 – WordPress Developer Blog"
+[2]: https://developer.wordpress.org/block-editor/reference-guides/block-api/block-styles/?utm_source=chatgpt.com "Styles – Block Editor Handbook | Developer.WordPress.org"
+[3]: 
+[4]: 
+
+
+Here’s a concise, structured roundup of Rich Tabor’s articles relevant to block‑theme development and `theme.json`. I’ve extracted insights on the key areas you flagged: block styles, style variations, palettes, typesets, section styles, global styles, and patterns.
+
+---
+
+## Rich Tabor’s Theme.Log Articles — At a Glance
+
+---
+
+### **Using a fluid type scale in block themes**
+
+* Explains applying a **fluid typographic scale** using CSS `clamp()` combined with a scale stored in `settings.custom.typography.scale` in `theme.json`.
+* Proposes creating **custom CSS variables** (e.g., `--wp--custom--typography--large`) and using `clamp()` in `settings.typography.fontSizes` to build fluid yet scaled typography.
+  ([Rich Tabor][1])
+
+**Relevance:**
+
+* This is gold for **fluid typography** guidelines and for mapping Figma → theme.json with token-based, responsive sizing.
+
+---
+
+### **Standardizing theme.json spacing sizes**
+
+* Introduces `settings.spacing.spacingScale` (operator, increment, steps, unit) to automate systematic spacing presets.
+* Alternatively, suggests `settings.spacing.spacingSizes` with explicit custom sizes (slugs, names, fluid expressions).
+* Mentions future support for `styles.spacing.blockGap` to style gaps between child blocks.
+  ([Rich Tabor][2])
+
+**Relevance:**
+
+* Crucial for your **fluid spacing** documentation and consistent preset usage in section styles.
+
+---
+
+### **Standardizing theme.json font sizes**
+
+* Proposes using consistent slugs like `small`, `medium`, `large`, `x-large`, each with optional `fluid` min/max properties, plus `size` fallback.
+* Illustrates how theme.json resolves into CSS variables (e.g., `--wp--preset--font-size--small`).
+* Warns that inconsistent slugs produce broken layouts when switching themes.
+  ([Rich Tabor][1], [Rich Tabor][3])
+
+**Relevance:**
+
+* Forms the basis for your **fluid typography recommendations** and emphasizes standardization across themes.
+
+---
+
+### **Standardizing theme.json color slugs**
+
+* Recommends core color slugs: `base`, `contrast`, and at least `primary`.
+* Shows how slug mismatch between themes breaks styles when switching themes.
+* Encourages neutral, functional slug names rather than descriptive color names (e.g. `green`).
+  ([Rich Tabor][4])
+
+**Relevance:**
+
+* Vital input for the **colour palettes** and **style variations** sections of your documentation, promoting interoperability.
+
+---
+
+### **How to build WordPress patterns**
+
+* Walks through designing block patterns: copying content, registering with `register_block_pattern()`, including title, description, block content, categories, keywords, viewportWidth, `blockTypes`.
+* Notes patterns are copied once inserted; changes to source don’t propagate.
+  ([Rich Tabor][3], [Rich Tabor][5])
+
+**Relevance:**
+
+* Essential for your **Patterns** documentation: building, registering, and pattern vs style differences.
+
+---
+
+### **Building WordPress block variations**
+
+* Clarifies **block variations** (configuration–changing variants shown when inserting blocks) are different from **block style variations**.
+* Provides example of registering a variation (`wp.blocks.registerBlockVariation`) for a form block, with `innerBlocks`, name, title, icon, etc.
+  ([Rich Tabor][6])
+
+**Relevance:**
+
+* Great for your **style variations** vs **block variations** section—clarifies distinctions.
+
+---
+
+### **A primer on WordPress full site editing**
+
+* Defines block‑based themes: `theme.json` + block templates/parts, minimal PHP.
+* Demonstrates how FSE uses `theme.json` to drive styles across editor and front‑end.
+  ([Rich Tabor][7])
+
+**Relevance:**
+
+* Supports **global styles** framing and context for block‑theme direction.
+
+---
+
+### **WordPress 6.6**
+
+* Highlights key enhancements: **colour palettes**, **typesets**, **block style variations** (i.e. section styles), reduced CSS specificity, responsive features like negative margins, Grid block, shadow presets, full‑site enhancements.
+  ([Rich Tabor][3], [Rich Tabor][8])
+
+**Relevance:**
+
+* This ties directly into your **section styles**, **global styles**, and infrastructure expectations (like low specificity).
+
+---
+
+## Summary Table
+
+| Topic                              | Key Contributions from Tabor’s Articles                                                                       |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Fluid typography**               | `clamp()` + scale via custom props; `theme.json` fontSizes with fluid presets ([Rich Tabor][1])               |
+| **Fluid spacing**                  | `spacingScale` or `spacingSizes`, blockGap support ([Rich Tabor][9])                                          |
+| **Typography standardization**     | Common font-size slugs + fluid ranges, avoid slug inconsistencies ([Rich Tabor][10])                          |
+| **Colour standardization**         | `base`, `contrast`, `primary` slugs for cross-theme portability ([Rich Tabor][11])                            |
+| **Patterns**                       | Building and registering block patterns; patterns vs style reuse ([Rich Tabor][12])                           |
+| **Block variations**               | Clarifies API & usage differ from style variations ([Rich Tabor][13])                                         |
+| **Full Site Editing / theme.json** | Context for block-based themes and `theme.json` roles ([Rich Tabor][14])                                      |
+| **WordPress 6.6 features**         | Introduced section styles, reduced specificity, typesets, palettes, block style variations ([Rich Tabor][15]) |
+
+---
+
+## What’s Next?
+
+Would you like me to slot these insights into the `.md` docs hierarchy? For example:
+
+* `fluid-spacing.md` → reference `spacingScale` article
+* `fluid-typography.md` → link to fluid type scale + standard font sizes
+* `colour-palettes.md` → based on color slugs article
+* `patterns.md` and `block-variations.md` → pattern vs variation context
+* `global-styles.md` → FSE + 6.6 overview
+
+I can also create inline link anchors (e.g. `[fluid type scale](https://rich.blog/fluid-type-scale-theme-json/)`) ready for copy-paste.
+
+Let me know how you’d like to proceed—happy to scaffold the docs directly.
+
+[1]: https://rich.blog/fluid-type-scale-theme-json/?utm_source=chatgpt.com "Using a fluid type scale in block themes – Rich Tabor"
+[2]: https://rich.blog/standardizing-theme-json-spacing/?utm_source=chatgpt.com "Standardizing theme.json spacing sizes – Rich Tabor"
+[3]: https://rich.blog/theme-json-font-sizes/?utm_source=chatgpt.com "Standardizing theme.json font sizes – Rich Tabor"
+[4]: https://rich.blog/standardizing-theme-json-colors/?utm_source=chatgpt.com "Standardizing theme.json color slugs – Rich Tabor"
+[5]: https://rich.blog/patterns/?utm_source=chatgpt.com "How to build WordPress patterns – Rich Tabor"
+[6]: https://rich.blog/block-variations/?utm_source=chatgpt.com "Building WordPress block variations – Rich Tabor"
+[7]: https://rich.blog/full-site-editing/?utm_source=chatgpt.com "A primer on WordPress full site editing – Rich Tabor"
+[8]: https://rich.blog/wordpress-6-6/?utm_source=chatgpt.com "WordPress 6.6 – Rich Tabor"
+[9]: https://rich.blog/standardizing-theme-json-spacing/ "Standardizing theme.json spacing sizes – Rich Tabor"
+[10]: https://rich.blog/theme-json-font-sizes/ "Standardizing theme.json font sizes – Rich Tabor"
+[11]: https://rich.blog/standardizing-theme-json-colors/ "Standardizing theme.json color slugs – Rich Tabor"
+[12]: https://rich.blog/patterns/ "How to build WordPress patterns – Rich Tabor"
+[13]: https://rich.blog/block-variations/ "Building WordPress block variations – Rich Tabor"
+[14]: https://rich.blog/full-site-editing/ "A primer on WordPress full site editing – Rich Tabor"
+[15]: https://rich.blog/wordpress-6-6/ "WordPress 6.6 – Rich Tabor"

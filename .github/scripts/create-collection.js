@@ -31,7 +31,7 @@ async function createCollectionTemplate(){
 		let collectionId = parsed.id || await prompt('Collection ID (lowercase, hyphens only): ');
 		if(!collectionId){ console.error('❌ Collection ID is required'); process.exit(1); }
 		if(!/^[a-z0-9-]+$/.test(collectionId)){ console.error('❌ Collection ID must contain only lowercase letters, numbers, and hyphens'); process.exit(1); }
-		const collectionsDir = path.join(process.cwd(), 'collections');
+		const collectionsDir = path.join(process.cwd(), '.github', 'collections');
 		const filePath = path.join(collectionsDir, `${collectionId}.collection.yml`);
 		if(fs.existsSync(filePath)){ console.log(`⚠️  Collection ${collectionId} already exists at ${filePath}`); console.log('💡 Please edit that file instead or choose a different ID.'); process.exit(1); }
 		if(!fs.existsSync(collectionsDir)) fs.mkdirSync(collectionsDir, { recursive: true });
@@ -42,7 +42,7 @@ async function createCollectionTemplate(){
 		let tagInput = parsed.tags || await prompt('Tags (comma-separated, or press Enter for defaults): ');
 		let tags = [];
 		if(tagInput && tagInput.toString().trim()) tags = tagInput.toString().split(',').map(t=>t.trim()).filter(Boolean); else tags = collectionId.split('-').slice(0,3);
-		const template = `id: ${collectionId}\nname: ${collectionName}\ndescription: ${description}\ntags: [${tags.join(', ')}]\nitems:\n  # Add your collection items here\n  # Example:\n  # - path: prompts/example.prompt.md\n  #   kind: prompt\n  # - path: instructions/example.instructions.md\n  #   kind: instruction\n  # - path: chatmodes/example.chatmode.md\n  #   kind: chat-mode\ndisplay:\n  ordering: alpha # or "manual" to preserve the order above\n  show_badge: false # set to true to show collection badge on items\n`;
+		const template = `id: ${collectionId}\nname: ${collectionName}\ndescription: ${description}\ntags: [${tags.join(', ')}]\nitems:\n  # Add your collection items here\n  # Example:\n  # - path: .github/prompts/example.prompts.md\n  #   kind: prompt\n  # - path: .github/instructions/example.instructions.md\n  #   kind: instruction\n  # - path: .github/chatmodes/example.chatmodes.md\n  #   kind: chat-mode\n  # - path: .github/agents/example.agents.md\n  #   kind: agent\ndisplay:\n  ordering: alpha # or "manual" to preserve the order above\n  show_badge: false # set to true to show collection badge on items\n`;
 		fs.writeFileSync(filePath, template);
 		console.log(`✅ Created collection template: ${filePath}`);
 		console.log('\n📝 Next steps:');

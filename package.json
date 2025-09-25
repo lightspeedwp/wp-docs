@@ -8,9 +8,15 @@
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "contributors:check": "all-contributors check",
-    "lint:agents": "node scripts/lint-agents.js",
-    "lang:en-gb": "node scripts/en-gb-normalise.js",
-    "lang:en-gb:apply": "node scripts/en-gb-normalise.js --apply"
+    "lint": "npm run lint:md && npm run lint:js && npm run lint:agents",
+    "lint:md": "markdownlint '**/*.md' --ignore node_modules",
+    "lint:js": "eslint '**/*.js' --ignore-path .gitignore",
+    "lint:agents": "node .github/scripts/lint-agents.js",
+    "lint:fix": "npm run lint:md -- --fix && npm run lint:js -- --fix && npm run format",
+    "format": "prettier --write '**/*.{js,json,md,yml,yaml}' --ignore-path .gitignore",
+    "format:check": "prettier --check '**/*.{js,json,md,yml,yaml}' --ignore-path .gitignore",
+    "lang:en-gb": "node .github/scripts/en-gb-normalise.js",
+    "lang:en-gb:apply": "node .github/scripts/en-gb-normalise.js --apply"
   },
   "repository": {
     "type": "git",
@@ -29,6 +35,10 @@
   "author": "LightSpeed WordPress",
   "license": "GPL-3.0-only",
   "devDependencies": {
-    "all-contributors-cli": "^6.26.1"
+    "all-contributors-cli": "^6.26.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "markdownlint-cli": "^0.39.0",
+    "prettier": "^3.2.5"
   }
 }

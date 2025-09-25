@@ -1,0 +1,1 @@
+- Tabs; semicolons; single quotes; `const`/`let`; `===`; modules; JSDoc; `requestAnimationFrame`; respect reduced motion.
