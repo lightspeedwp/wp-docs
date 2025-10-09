@@ -136,7 +136,7 @@ If your **MIN** is **12px**:
 - On tablets and up, spacing **scales fluidly** until it reaches the max.
 
 ### Key guidance
-- **Lowest sensible `vw`:** For most themes, **2vw** is a practical minimum; lower values risk never entering the fluid zone except on ultra‑wide screens.
+- **Lowest sensible `vw`:** For most themes, **2vw** is a practical minimum; lower values risk never entering the fluid zone except on ultra-wide screens.
 - **Test visually:** Validate on emulators and physical devices.
 - **Tip:** If you want mobile to always use **MIN**, pick `vw` so that its calculation at **375px** is **below MIN**.
 
