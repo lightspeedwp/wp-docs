@@ -77,7 +77,7 @@ A predictable, token-based system for **colours, spacing, and typography** helps
 ---
 ## Font Sizes & Slugs
 
-### WordPress Default Font Size Slugs
+### Why Numeric Font Size Slugs Are Essential
 WordPress ships with four core font sizes:
 
 - `small`
