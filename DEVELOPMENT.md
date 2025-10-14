@@ -21,7 +21,9 @@ npm install
 | Command                    | Purpose                                                                 |
 | -------------------------- | ----------------------------------------------------------------------- |
 | `npm run build`            | Regenerates aggregated README tables / catalogs via `update-readme.js`. |
-| `npm run lint:agents`      | (If present) Validates agent persona file structure.                    |
+| `npm run lint`             | Runs all linting checks (markdown, JavaScript, agent files).            |
+| `npm run lint:agents`      | Validates agent persona file structure and frontmatter.                 |
+| `npm run format`           | Formats code using Prettier.                                           |
 | `npm run lang:en-gb`       | Dry-run UK English spelling normalisation (report only).                |
 | `npm run lang:en-gb:apply` | Apply UK English normalisation changes.                                 |
 

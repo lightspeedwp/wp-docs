@@ -21,34 +21,34 @@ Agents MUST:
 
 ## 3. Core Behavioral Principles
 
--   **WordPress‑First Overlay:** Always check if a solution maps to native WP APIs (hooks, filters, REST endpoints, block editor APIs) before inventing abstractions.
--   **Least Intrusive Change:** Modify only what is necessary; preserve file history and style.
--   **Security by Default:** Use capability checks (`current_user_can`), nonces, sanitisation (`sanitize_text_field`, `esc_url_raw`) and output escaping (`esc_html`, `esc_attr`, `wp_kses_post`).
--   **Performance Awareness:** Avoid unnecessary queries, duplicate asset enqueues, blocking code in the editor, or large server round trips. Suggest caching (transients / object cache) where justified.
--   **Accessibility Mindset:** Semantic elements, proper ARIA only when native semantics insufficient, focus management, colour contrast, keyboard operability. Code is produced _with accessibility in mind_ but must still be manually audited.
--   **Internationalization:** Wrap user‑facing strings in translation functions (`__`, `_e`, `_x`) with a consistent text domain.
+- **WordPress‑First Overlay:** Always check if a solution maps to native WP APIs (hooks, filters, REST endpoints, block editor APIs) before inventing abstractions.
+- **Least Intrusive Change:** Modify only what is necessary; preserve file history and style.
+- **Security by Default:** Use capability checks (`current_user_can`), nonces, sanitisation (`sanitize_text_field`, `esc_url_raw`) and output escaping (`esc_html`, `esc_attr`, `wp_kses_post`).
+- **Performance Awareness:** Avoid unnecessary queries, duplicate asset enqueues, blocking code in the editor, or large server round trips. Suggest caching (transients / object cache) where justified.
+- **Accessibility Mindset:** Semantic elements, proper ARIA only when native semantics insufficient, focus management, colour contrast, keyboard operability. Code is produced _with accessibility in mind_ but must still be manually audited.
+- **Internationalization:** Wrap user‑facing strings in translation functions (`__`, `_e`, `_x`) with a consistent text domain.
 
 ## 4. Quality Gates (PR Readiness Checklist)
 
 Before approving / merging, an agent should confirm:
 
--   [ ] Security: All user input sanitized on ingress, escaped on egress; capabilities enforced.
--   [ ] Performance: No obvious N+1 queries; assets only loaded when needed; block/theme JSON lean.
--   [ ] Accessibility: Semantics intact, interactive elements keyboard reachable, no colour contrast regressions.
--   [ ] i18n: All new user-visible strings translatable; no concatenated translatable fragments.
--   [ ] Coding Standards: Matches WordPress PHPCS, JS, CSS guidelines; consistent naming.
--   [ ] Documentation: Inline doc blocks updated; README / CHANGELOG amended if behaviour changes.
--   [ ] Tests / Validation: If logic is complex, propose or update tests (PHPUnit, Playwright, etc.).
--   [ ] Backward Safety: No breaking changes without explicit note & migration guidance.
+- [ ] Security: All user input sanitized on ingress, escaped on egress; capabilities enforced.
+- [ ] Performance: No obvious N+1 queries; assets only loaded when needed; block/theme JSON lean.
+- [ ] Accessibility: Semantics intact, interactive elements keyboard reachable, no colour contrast regressions.
+- [ ] i18n: All new user-visible strings translatable; no concatenated translatable fragments.
+- [ ] Coding Standards: Matches WordPress PHPCS, JS, CSS guidelines; consistent naming.
+- [ ] Documentation: Inline doc blocks updated; README / CHANGELOG amended if behaviour changes.
+- [ ] Tests / Validation: If logic is complex, propose or update tests (PHPUnit, Playwright, etc.).
+- [ ] Backward Safety: No breaking changes without explicit note & migration guidance.
 
 ## 5. Coding Standards References
 
 Central references (do not restate—link):
 
--   `coding-standards/index.md`
--   `coding-standards/wordpress-coding-standards/*.md`
--   Inline documentation: `coding-standards/inline-documentation-standards/`
-    Agents should surface the _specific_ rule when flagging an issue (e.g., "Escape late: use `esc_attr` for attribute context").
+- `coding-standards/index.md`
+- `coding-standards/wordpress-coding-standards/*.md`
+- Inline documentation: `coding-standards/inline-documentation-standards/`
+  Agents should surface the _specific_ rule when flagging an issue (e.g., "Escape late: use `esc_attr` for attribute context").
 
 ## 6. Copilot Asset Ecosystem Usage
 
@@ -71,10 +71,10 @@ Decision Heuristic:
 
 Current scripts (from `package.json`):
 
--   `npm run build` – Executes `node scripts/update-readme.js` (keep READMEs regenerated / synchronized).
--   `npm run contributors:add` – All Contributors CLI (add new contributor).
--   `npm run contributors:generate` – Regenerate contributor table.
--   `npm run contributors:check` – Verify contributor metadata.
+- `npm run build` – Executes `node scripts/update-readme.js` (keep READMEs regenerated / synchronized).
+- `npm run contributors:add` – All Contributors CLI (add new contributor).
+- `npm run contributors:generate` – Regenerate contributor table.
+- `npm run contributors:check` – Verify contributor metadata.
 
 Agent Guidance:
 
@@ -98,32 +98,35 @@ Agent Guidance:
 
 ## 9. Performance Guardrails (Quick Scan)
 
--   Uncached heavy queries? Introduce transient or object cache (with invalidation strategy).
--   Large images / media references? Recommend optimisation or lazy loading.
--   Redundant script/style enqueues? Consolidate; use dependencies and `wp_enqueue_script` with versioning.
--   Avoid synchronous remote HTTP requests in page output phase.
+- Uncached heavy queries? Introduce transient or object cache (with invalidation strategy).
+- Large images / media references? Recommend optimisation or lazy loading.
+- Redundant script/style enqueues? Consolidate; use dependencies and `wp_enqueue_script` with versioning.
+- Avoid synchronous remote HTTP requests in page output phase.
 
 ## 10. Security Guardrails (Quick Scan)
 
--   No direct `$_POST` / `$_GET` usage without sanitization wrappers.
--   Prepared statements (`$wpdb->prepare`) for custom SQL.
--   Strip HTML where not required (`sanitize_text_field` vs `wp_kses_post`).
--   Resist path traversal: use WP filesystem API where applicable.
+- No direct `$_POST` / `$_GET` usage without sanitization wrappers.
+- Prepared statements (`$wpdb->prepare`) for custom SQL.
+- Strip HTML where not required (`sanitize_text_field` vs `wp_kses_post`).
+- Resist path traversal: use WP filesystem API where applicable.
 
-## 11. Directory-Level AGENT.md Files
+## 11. WordPress-Focused Agent Specialists
 
-Purpose: Provide _local_ augmentations without duplicating global rules.
+The repository includes specialized agents for WordPress development domains:
 
-Creation Steps:
+- **accessibility-auditor.agent.md** - WCAG 2.2 AA compliance and inclusive design
+- **performance-profiler.agent.md** - WordPress performance optimization and Core Web Vitals
+- **security-hardening-reviewer.agent.md** - WordPress security best practices and OWASP compliance
+- **i18n-l10n-reviewer.agent.md** - Internationalization and localization for global WordPress sites
+- **wordpress-block-theme-architect.agent.md** - Comprehensive block and FSE theme development
+- **woocommerce-specialist.agent.md** - E-commerce optimization and WooCommerce integration
+- **block-theme-optimizer.agent.md** - Theme.json design systems and FSE optimization
 
-1. Copy the template at `AGENT.md-template` (see Section 12).
-2. Populate: Scope, Domain Nuances, Local Quality Focus, Common Tasks, Anti‑patterns.
-3. Keep under ~150 lines; link out to canonical docs instead of restating.
-4. Add only if real specialization exists (e.g., `block-themes/AGENT.md`).
+Each agent follows WordPress coding standards, security practices, and accessibility guidelines while specializing in their domain expertise.
 
 ## 12. Template Reference
 
-The canonical template is stored at `.github/agents/AGENT.md.template` (relocated from root). Copy it to a directory as `AGENT.md` when a genuine specialisation is needed.
+The canonical template is stored at `.github/agents/TEMPLATE.agent.md`. Copy it to create new specialized agents when genuine WordPress-focused specialisation is needed.
 
 ## 13. Future Tagging System (Planned)
 
@@ -135,12 +138,12 @@ Significant structural or standards changes must append a new entry to `CHANGELO
 
 ## 15. Anti-Patterns to Avoid
 
--   Bulk refactors without scoped reasoning.
--   Introducing frameworks unrelated to WP ecosystem need.
--   Injecting custom REST endpoints duplicating core capabilities.
--   Overusing `innerHTML` without sanitisation context.
--   Hard-coded styles instead of design tokens (theme.json presets).
--   Large multi-file PRs without incremental review points.
+- Bulk refactors without scoped reasoning.
+- Introducing frameworks unrelated to WP ecosystem need.
+- Injecting custom REST endpoints duplicating core capabilities.
+- Overusing `innerHTML` without sanitisation context.
+- Hard-coded styles instead of design tokens (theme.json presets).
+- Large multi-file PRs without incremental review points.
 
 ## 16. Accessibility Note
 

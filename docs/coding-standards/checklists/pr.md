@@ -1,0 +1,5 @@
+- [ ] Linters pass
+- [ ] A11y checks
+- [ ] Security (sanitize/escape/nonces)
+- [ ] Performance
+- [ ] Docs/tests updated

@@ -1,34 +1,29 @@
 id: testing-automation
 name: Testing & Test Automation
 description: Comprehensive collection for writing tests, test automation, and test-driven development including unit tests, integration tests, and end-to-end testing strategies.
-license: "GPL-3.0"tags: [testing, tdd, automation, unit-tests, integration, playwright, jest, nunit]
+license: "GPL-3.0"
+tags: [testing, tdd, automation, unit-tests, integration, playwright, jest, nunit]
 items:
   # TDD Chat Modes
-  - path: chatmodes/tdd-red.chatmode.md
+  - path: .github/chatmodes/tdd-red.chatmodes.md
     kind: chat-mode
-  - path: chatmodes/tdd-green.chatmode.md
+  - path: .github/chatmodes/tdd-green.chatmodes.md
     kind: chat-mode
-  - path: chatmodes/tdd-refactor.chatmode.md
+  - path: .github/chatmodes/tdd-refactor.chatmodes.md
     kind: chat-mode
-  - path: chatmodes/playwright-tester.chatmode.md
+  - path: .github/chatmodes/playwright-tester.chatmodes.md
     kind: chat-mode
 
   # Testing Instructions
-  - path: instructions/playwright-typescript.instructions.md
-    kind: instruction
-  - path: instructions/playwright-python.instructions.md
+  - path: .github/instructions/playwright-typescript.instructions.md
     kind: instruction
 
   # Testing Prompts
-  - path: prompts/playwright-explore-website.prompt.md
+  - path: .github/prompts/playwright-explore-website.prompts.md
     kind: prompt
-  - path: prompts/playwright-generate-test.prompt.md
+  - path: .github/prompts/playwright-generate-test.prompts.md
     kind: prompt
-  - path: prompts/csharp-nunit.prompt.md
-    kind: prompt
-  - path: prompts/java-junit.prompt.md
-    kind: prompt
-  - path: prompts/ai-prompt-engineering-safety-review.prompt.md
+  - path: .github/prompts/ai-prompt-engineering-safety-review.prompts.md
     kind: prompt
 
 display:

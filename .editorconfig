@@ -1,21 +1,21 @@
 # EditorConfig is awesome: https://EditorConfig.org
 
-# top-most EditorConfig file
+# Indicate this is the top-most EditorConfig file (stop searching parent directories)
 root = true
 
-# All files
+# Universal settings for all files in the repository
 [*]
-indent_style = space
-indent_size = 2
-end_of_line = lf
-charset = utf-8
-trim_trailing_whitespace = true
-insert_final_newline = true
+indent_style = space          # Use spaces instead of tabs for consistency
+indent_size = 2               # Standard 2-space indentation for most files
+end_of_line = lf              # Unix-style line endings for cross-platform compatibility
+charset = utf-8               # UTF-8 encoding for international character support
+trim_trailing_whitespace = true  # Remove trailing whitespace to keep files clean
+insert_final_newline = true   # Ensure files end with a newline for POSIX compliance
 
-# Markdown files
+# Markdown files - preserve trailing spaces (used for line breaks) and allow long lines
 [*.md]
-trim_trailing_whitespace = false
-max_line_length = off
+trim_trailing_whitespace = false  # Preserve intentional trailing spaces for markdown line breaks
+max_line_length = off            # Allow long lines for readability (handled by markdownlint)
 
 # JSON files
 [*.json]
