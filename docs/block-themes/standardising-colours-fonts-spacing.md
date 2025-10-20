@@ -8,7 +8,11 @@ A predictable, token-based system for **colours, spacing, and typography** helps
 
 * `base` → background
 * `contrast` → text
-* `primary` → brand/CTA
+* `primary` → main brand color
+* `brand` → primary brand identity
+* `cta` → call-to-action buttons
+* `primary-light` → hover/focus states
+* `primary-dark` → pressed/active states
 
 ### Neutral Scale
 
@@ -34,11 +38,14 @@ A predictable, token-based system for **colours, spacing, and typography** helps
     "color": {
       "defaultPalette": false,
       "palette": [
-        { "slug": "base",     "name": "Base",     "color": "#FFFFFF" },
-        { "slug": "contrast", "name": "Contrast", "color": "#111111" },
-        { "slug": "primary",  "name": "Primary",  "color": "#0A84FF" },
+        { "slug": "base",         "name": "Base",         "color": "#FFFFFF" },
+        { "slug": "contrast",     "name": "Contrast",     "color": "#111111" },
+        { "slug": "primary",      "name": "Primary",      "color": "#0A84FF" },
+        { "slug": "brand",        "name": "Brand",        "color": "#0A84FF" },
+        { "slug": "cta",          "name": "Call to Action", "color": "#0066CC" },
+        { "slug": "primary-light", "name": "Primary Light", "color": "#66B7FF" },
+        { "slug": "primary-dark",  "name": "Primary Dark",  "color": "#004999" },
 
-        { "slug": "neutral-0",    "name": "Neutral 0",    "color": "#FFFFFF" },
         { "slug": "neutral-100",  "name": "Neutral 100",  "color": "#F9FAFB" },
         { "slug": "neutral-200",  "name": "Neutral 200",  "color": "#F3F4F6" },
         { "slug": "neutral-300",  "name": "Neutral 300",  "color": "#E5E7EB" },
@@ -66,12 +73,55 @@ A predictable, token-based system for **colours, spacing, and typography** helps
 
 ---
 
+## AI-Guided Color Usage Rules
+
+To prevent overwhelming editors and ensure consistent brand application, follow these semantic guidelines:
+
+### When to Use Each Color
+
+**Base & Contrast**
+- `base`: Page backgrounds, card backgrounds, content areas
+- `contrast`: Body text, headings, icons
+
+**Brand Colors** 
+- `primary`: Navigation, primary buttons, brand elements
+- `brand`: Logo areas, brand headers, key brand moments
+- `cta`: Action buttons, "Buy Now", "Sign Up", conversion elements
+
+**Interactive States**
+- `primary-light`: Hover states for primary elements, focus rings
+- `primary-dark`: Active/pressed states, emphasis variations
+
+**Content Guidelines**
+- **Avoid** using brand colors for large background areas
+- **Do** use neutral colors for reading content and UI foundations  
+- **Ensure** CTA colors have high contrast for accessibility
+- **Test** color combinations for sufficient contrast ratios (4.5:1 minimum)
+
+### Editor Prompts & Suggestions
+
+When implementing in block themes, consider adding these as editor hints:
+
+```json
+{
+  "slug": "cta",
+  "name": "Call to Action",
+  "color": "#0066CC",
+  "description": "Use for buttons and conversion elements"
+}
+```
+
+---
+
 ## Best Practices
 
-* **Extend in 100-steps** for predictable scaling.
-* **Group hues into bands** (e.g., `accent-100` → `accent-500` for blues, `accent-600` → `accent-900` for warm tones).
-* **Don’t rename slugs** once published — just change values to update brand colours.
-* **Use neutrals for UI foundations**, **accents for highlights/brand identity**.
+* **Use semantic naming** that editors understand (`primary-light` vs `primary-300`).
+* **Limit brand color variations** to essential states (normal, light, dark, CTA).
+* **Keep editor-facing colors focused** — use 5-7 brand colors max in the palette.
+* **Don't rename slugs** once published — just change values to update brand colours.
+* **Use neutrals for UI foundations**, **brand/primary for identity**, **CTA for actions**.
+* **Consider accessibility** — ensure sufficient contrast between all color pairs.
+* **Provide clear guidance** through naming what each color should be used for.
 
 
 ---
@@ -100,21 +150,62 @@ Perfect — let’s extend the **WordPress default font sizes** into a numeric s
 
 ---
 
+
+### Why Use Numeric Slugs for Font Sizes?
+
+Just like spacing, using slugs like `font-size-100` results in CSS variables such as:
+
+```css
+--wp--preset--font-size--100
+```
+
+This avoids duplication and keeps the CSS variable names clean and predictable. Use numeric slugs (e.g. `100`, `200`, `300`) and a descriptive name for the editor UI.
+
 ### Recommended Extended Scale (multiples of 8px)
 
-| Slug            | Label    | px size | rem (base 16px) |
-| --------------- | -------- | ------- | --------------- |
-| `font-size-100` | Tiny     | 12px    | 0.75rem         |
-| `font-size-200` | Base    | 16px    | 1rem            |
-| `font-size-300` | Small     | 20px    | 1.25rem         |
-| `font-size-400` | Medium   | 24px    | 1.5rem          |
-| `font-size-500` | Large    | 32px    | 2rem            |
-| `font-size-600` | X-Large  | 40px    | 2.5rem          |
-| `font-size-700` | Huge     | 48px    | 3rem            |
-| `font-size-800` | Gigantic | 64px    | 4rem            |
-| `font-size-900` | Colossal | 80px    | 5rem            |
+| Slug  | Label     | px size | rem (base 16px) |
+|-------|-----------|---------|-----------------|
+| 100   | Tiny      | 12px    | 0.75rem         |
+| 200   | Base      | 16px    | 1rem            |
+| 300   | Small     | 20px    | 1.25rem         |
+| 400   | Medium    | 24px    | 1.5rem          |
+| 500   | Large     | 32px    | 2rem            |
+| 600   | X-Large   | 40px    | 2.5rem          |
+| 700   | Huge      | 48px    | 3rem            |
+| 800   | Gigantic  | 64px    | 4rem            |
+| 900   | Colossal  | 80px    | 5rem            |
 
-👉 You can keep extending in increments of 100 (e.g. `font-size-1000` for 96px) if your design system needs it.
+👉 You can keep extending in increments of 100 (e.g. `1000` for 96px) if your design system needs it.
+
+### Example theme.json Partial
+
+```json
+{
+  "typography": {
+    "fontSizes": [
+      { "slug": "100", "size": "0.75rem", "name": "Tiny" },
+      { "slug": "200", "size": "1rem",    "name": "Base" },
+      { "slug": "300", "size": "1.25rem", "name": "Small" },
+      { "slug": "400", "size": "1.5rem",  "name": "Medium" },
+      { "slug": "500", "size": "2rem",    "name": "Large" },
+      { "slug": "600", "size": "2.5rem",  "name": "X-Large" },
+      { "slug": "700", "size": "3rem",    "name": "Huge" },
+      { "slug": "800", "size": "4rem",    "name": "Gigantic" },
+      { "slug": "900", "size": "5rem",    "name": "Colossal" }
+    ]
+  }
+}
+```
+
+### Example CSS Output
+
+```css
+--wp--preset--font-size--100: 0.75rem;
+--wp--preset--font-size--200: 1rem;
+--wp--preset--font-size--300: 1.25rem;
+/* ...etc... */
+--wp--preset--font-size--900: 5rem;
+```
 
 ---
 
@@ -127,15 +218,15 @@ Perfect — let’s extend the **WordPress default font sizes** into a numeric s
   "settings": {
     "typography": {
       "fontSizes": [
-        { "slug": "font-size-100", "size": "0.75rem", "name": "Tiny" },
-        { "slug": "font-size-200", "size": "1rem",    "name": "Base" },
-        { "slug": "font-size-300", "size": "1.25rem", "name": "Small" },
-        { "slug": "font-size-400", "size": "1.5rem",  "name": "Medium" },
-        { "slug": "font-size-500", "size": "2rem",    "name": "Large" },
-        { "slug": "font-size-600", "size": "2.5rem",  "name": "X-Large" },
-        { "slug": "font-size-700", "size": "3rem",    "name": "Huge" },
-        { "slug": "font-size-800", "size": "4rem",    "name": "Gigantic" },
-        { "slug": "font-size-900", "size": "5rem",    "name": "Colossal" }
+        { "slug": "100", "size": "0.75rem", "name": "Tiny" },
+        { "slug": "200", "size": "1rem",    "name": "Base" },
+        { "slug": "300", "size": "1.25rem", "name": "Small" },
+        { "slug": "400", "size": "1.5rem",  "name": "Medium" },
+        { "slug": "500", "size": "2rem",    "name": "Large" },
+        { "slug": "600", "size": "2.5rem",  "name": "X-Large" },
+        { "slug": "700", "size": "3rem",    "name": "Huge" },
+        { "slug": "800", "size": "4rem",    "name": "Gigantic" },
+        { "slug": "900", "size": "5rem",    "name": "Colossal" }
       ]
     }
   }
@@ -179,14 +270,26 @@ We extend this with additional slugs to cover larger gaps, while **keeping namin
 
 ## Extended Spacing Scale
 
-We extend this with additional slugs to cover larger gaps, while **keeping naming consistent**:
 
-- `spacing-70` → `3.5rem` (56px)  
-- `spacing-80` → `4rem` (64px)  
-- `spacing-90` → `4.5rem` (72px)  
-- `spacing-100` → `5rem` (80px)  
+### Why Use Numeric Slugs?
 
----
+When you use slugs like `spacing-10`, WordPress generates CSS variables such as:
+
+```css
+--wp--preset--spacing--spacing-10
+```
+
+This duplicates the word "spacing" and can be confusing. Instead, use numeric slugs (e.g. `10`, `20`, `30`) and a descriptive name for the editor UI. This results in cleaner CSS variables:
+
+```css
+--wp--preset--spacing--10
+```
+
+The same logic applies to font sizes:
+
+```css
+--wp--preset--font-size--100
+```
 
 ### Example JSON
 
@@ -194,19 +297,39 @@ We extend this with additional slugs to cover larger gaps, while **keeping namin
 "spacing": {
   "spacingScale": {
     "steps": [
-      { "slug": "spacing-10", "size": "0.625rem", "name": "10px" },
-      { "slug": "spacing-20", "size": "1.25rem", "name": "20px" },
-      { "slug": "spacing-30", "size": "1.875rem", "name": "30px" },
-      { "slug": "spacing-40", "size": "2.5rem", "name": "40px" },
-      { "slug": "spacing-50", "size": "3.125rem", "name": "50px" },
-      { "slug": "spacing-60", "size": "3.5rem", "name": "56px" },
-      { "slug": "spacing-70", "size": "3.75rem", "name": "60px" },
-      { "slug": "spacing-80", "size": "4rem", "name": "64px" },
-      { "slug": "spacing-90", "size": "4.5rem", "name": "72px" },
-      { "slug": "spacing-100", "size": "5rem", "name": "80px" }
+      { "slug": "10", "size": "0.625rem", "name": "10px" },
+      { "slug": "20", "size": "1.25rem", "name": "20px" },
+      { "slug": "30", "size": "1.875rem", "name": "30px" },
+      { "slug": "40", "size": "2.5rem", "name": "40px" },
+      { "slug": "50", "size": "3.125rem", "name": "50px" },
+      { "slug": "60", "size": "3.5rem", "name": "56px" },
+      { "slug": "70", "size": "3.75rem", "name": "60px" },
+      { "slug": "80", "size": "4rem", "name": "64px" },
+      { "slug": "90", "size": "4.5rem", "name": "72px" },
+      { "slug": "100", "size": "5rem", "name": "80px" }
     ]
   }
 }
+```
+
+### Example CSS Output
+
+```css
+--wp--preset--spacing--10: 0.625rem;
+--wp--preset--spacing--20: 1.25rem;
+--wp--preset--spacing--30: 1.875rem;
+/* ...etc... */
+--wp--preset--spacing--100: 5rem;
+```
+
+For font sizes:
+
+```css
+--wp--preset--font-size--100: 0.75rem;
+--wp--preset--font-size--200: 1rem;
+--wp--preset--font-size--300: 1.25rem;
+/* ...etc... */
+--wp--preset--font-size--900: 5rem;
 ```
 
 ---
@@ -267,6 +390,123 @@ The **hybrid approach** is currently best practice:
 - **Future-proof**: semantic naming ensures flexibility for rebrands.  
 
 ---
+
+## Standardised Naming Conventions & Slug Reference
+
+To ensure consistency, clarity, and future-proofing across all theme assets, use the following naming conventions for all theme.json presets, section styles, block styles, and variations. These conventions are based on best practices observed in leading themes and the LSX Design system.
+
+### General Principles
+
+- **Use semantic, role-based slugs** for colors, font families, and style sets (e.g. `primary`, `accent-1`, `brand-sans`, `button-primary`).
+- **Use numeric-only slugs** for spacing and font sizes (e.g. `100`, `200`, `10`, `20`).
+- **Avoid literal color names** (e.g. `blue`, `red`) and avoid repeating the preset type in the slug (e.g. `font-size-100`).
+- **Use suffixes** for variations (`-accent`, `-alt`, `-light`, `-dark`, `-inverse`).
+- **Keep slugs stable**—change values, not names, for future-proofing.
+
+### Recommended Slug Table
+
+| Type         | Slug Example           | Description/Role                |
+|--------------|------------------------|---------------------------------|
+| Color        | `primary`              | Main brand color                |
+| Color        | `accent-1`             | Accent color 1                  |
+| Color        | `base`                 | Background/base color           |
+| Color        | `contrast`             | Text/contrast color             |
+| Color        | `border-light`         | Light border                    |
+| Color        | `border-dark`          | Dark border                     |
+| Color        | `primary-accent`       | Brand accent                    |
+| Color        | `primary-alt`          | Brand alternate                 |
+| Color        | `primary-alt-accent`   | Brand alternate accent          |
+| Font Family  | `brand-sans`           | Main sans-serif font            |
+| Font Family  | `brand-serif`          | Main serif font                 |
+| Font Family  | `brand-mono`           | Monospace font                  |
+| Font Size    | `100`                  | Numeric only, UI name for label |
+| Font Size    | `200`                  | ...                             |
+| Section      | `section-hero`         | Hero section style              |
+| Section      | `section-footer`       | Footer section style            |
+| Section      | `section-1`            | Generic/numbered section        |
+| Block Style  | `button-primary`       | Primary button style            |
+| Block Style  | `quote-accent`         | Accent quote style              |
+| Variation    | `variation-accent`     | Accent style variation          |
+| Variation    | `variation-alt`        | Alternate style variation       |
+
+### Additional Standardised Slugs to Consider
+
+- **Color:** `success`, `warning`, `error`, `info`, `muted`, `overlay`, `highlight`, `shadow`, `focus`, `disabled`
+- **Font Size:** `caption`, `lead`, `display` (for extra large headings)
+- **Section:** `section-feature`, `section-testimonial`, `section-cta`, `section-gallery`
+- **Block Style:** `card`, `card-alt`, `list-compact`, `list-inline`, `heading-accent`, `heading-muted`
+- **Variation:** `variation-inverse`, `variation-muted`, `variation-outline`
+
+### Referencing Presets in theme.json
+
+- Use `var:preset|color|primary` for colors
+- Use `var:preset|font-size|100` for font sizes
+- Use `var:preset|font-family|brand-sans` for font families
+
+### Example theme.json Structure
+
+```json
+{
+  "settings": {
+    "color": {
+      "palette": [
+        { "slug": "primary", "name": "Brand Primary", "color": "#465aff" },
+        { "slug": "accent-1", "name": "Accent 1", "color": "#DBDDFF" },
+        { "slug": "base", "name": "Base", "color": "#fff" },
+        { "slug": "success", "name": "Success", "color": "#27ae60" },
+        { "slug": "warning", "name": "Warning", "color": "#f39c12" }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        { "slug": "brand-sans", "name": "Brand Sans", "fontFamily": "Mona Sans, sans-serif" },
+        { "slug": "brand-serif", "name": "Brand Serif", "fontFamily": "Literata, serif" }
+      ],
+      "fontSizes": [
+        { "slug": "100", "name": "Tiny", "size": "0.75rem" },
+        { "slug": "200", "name": "Base", "size": "1rem" },
+        { "slug": "display", "name": "Display", "size": "4rem" }
+      ]
+    },
+    "spacing": {
+      "spacingScale": {
+        "steps": [
+          { "slug": "10", "name": "10px", "size": "0.625rem" },
+          { "slug": "20", "name": "20px", "size": "1.25rem" }
+        ]
+      }
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var:preset|color|base",
+      "text": "var:preset|color|contrast"
+    },
+    "typography": {
+      "fontFamily": "var:preset|font-family|brand-sans",
+      "fontSize": "var:preset|font-size|200"
+    }
+  }
+}
+```
+
+### Mapping Design Tokens to theme.json
+
+Maintain a mapping table between Figma/design tokens and theme.json slugs for design/dev alignment. Example:
+
+| Figma Token      | theme.json Slug   |
+|------------------|------------------|
+| Brand/Primary    | `primary`        |
+| Brand/Accent 1   | `accent-1`       |
+| Font/Heading     | `brand-sans`     |
+| Spacing/Small    | `10`             |
+
+### Final Advice
+
+- **Document your naming conventions in your theme’s README.**
+- **Keep slugs stable—change values, not names, for future-proofing.**
+- **Align design tokens and theme.json slugs for seamless handoff.**
+- **Use semantic, role-based naming for clarity and maintainability.**
 
 ## References
 - Rich Tabor: [Standardizing theme.json spacing](https://rich.blog/standardizing-theme-json-spacing/)
