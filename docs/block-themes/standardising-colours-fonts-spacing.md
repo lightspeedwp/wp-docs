@@ -161,6 +161,21 @@ Just like spacing, using slugs like `font-size-100` results in CSS variables suc
 
 This avoids duplication and keeps the CSS variable names clean and predictable. Use numeric slugs (e.g. `100`, `200`, `300`) and a descriptive name for the editor UI.
 
+#### What Not To Do
+
+Avoid using slugs with redundant prefixes, such as:
+
+```css
+--wp--preset--spacing--spacing-10
+--wp--preset--font-size--font-size-100
+```
+
+These patterns duplicate the context ("spacing" or "font-size") and make CSS variables harder to read and maintain. Always use numeric-only slugs for clarity:
+
+```css
+--wp--preset--spacing--10
+--wp--preset--font-size--100
+```
 ### Recommended Extended Scale (multiples of 8px)
 
 | Slug  | Label     | px size | rem (base 16px) |
@@ -250,12 +265,12 @@ This avoids duplication and keeps the CSS variable names clean and predictable. 
 ### WordPress Default Spacing Slugs
 The default spacing scale is numeric and increments by 10:
 
-- `spacing-10`
-- `spacing-20`
-- `spacing-30`
-- `spacing-40`
-- `spacing-50`
-- `spacing-60`
+- `10`
+- `20`
+- `30`
+- `40`
+- `50`
+- `60`
 
 (These correspond to approximate values from `0.125rem` to `3rem`, though values may vary by theme implementation.)
 
@@ -263,23 +278,17 @@ The default spacing scale is numeric and increments by 10:
 
 We extend this with additional slugs to cover larger gaps, while **keeping naming consistent**:
 
-- `spacing-70` → `3.5rem` (56px)  
-- `spacing-80` → `4rem` (64px)  
-- `spacing-90` → `4.5rem` (72px)  
-- `spacing-100` → `5rem` (80px)  
+- `70` → `3.5rem` (56px)  
+- `80` → `4rem` (64px)  
+- `90` → `4.5rem` (72px)  
+- `100` → `5rem` (80px)  
 
 ## Extended Spacing Scale
 
 
 ### Why Use Numeric Slugs?
 
-When you use slugs like `spacing-10`, WordPress generates CSS variables such as:
-
-```css
---wp--preset--spacing--spacing-10
-```
-
-This duplicates the word "spacing" and can be confusing. Instead, use numeric slugs (e.g. `10`, `20`, `30`) and a descriptive name for the editor UI. This results in cleaner CSS variables:
+When you use numeric slugs like `10`, WordPress generates CSS variables such as:
 
 ```css
 --wp--preset--spacing--10
@@ -343,8 +352,11 @@ For font sizes:
 - Always keep **numeric slugs in sequence** (`20`, `30`, `40`…), since the editor orders presets by slug.  
 - If semantic slugs are preferred (`s`, `m`, `l`), use them consistently across all blocks.
 
-✅ Recommendation: Stick with numeric scales (`20–80`) for compatibility with WordPress defaults, but allow semantic naming at the design system layer (e.g. mapping `space.m → spacing-40`).
+✅ Recommendation: Stick with numeric scales (`20–80`) for compatibility with WordPress defaults, but allow semantic naming at the design system layer (e.g. mapping `space.m → 40`).
 
+#### What Not To Do
+
+Do not use slugs like `spacing-10`, `spacing-20`, etc. in your theme.json or design tokens. This leads to CSS variables such as `--wp--preset--spacing--spacing-10`, which are redundant and less readable. Use numeric slugs only (e.g. `10`, `20`).
 ---
 
 ### 2. **Typography**
@@ -354,6 +366,9 @@ For font sizes:
 
 ✅ Recommendation: Retain WP defaults for editor familiarity, but override values with your scale (e.g. keep slug `large` but define it as `clamp(1.5rem, 2vw, 2rem)`).
 
+#### What Not To Do
+
+Do not use slugs like `font-size-100`, `font-size-200`, etc. This will result in CSS variables such as `--wp--preset--font-size--font-size-100`, which are unnecessarily verbose. Use numeric slugs only (e.g. `100`, `200`).
 ---
 
 ### 3. **Colours**
