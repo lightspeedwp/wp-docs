@@ -1,0 +1,32 @@
+# Node.js
+node_modules/           # Node dependencies
+npm-debug.log*          # npm debug logs
+.DS_Store               # macOS system file
+
+# PHP / Composer
+vendor/                 # Composer dependencies
+.phpunit.result.cache   # PHPUnit cache
+.idea/                  # JetBrains IDE config
+
+# Lock Files
+pnpm-lock.yaml          # pnpm lock file
+composer.lock           # Composer lock file
+package-lock.json       # npm lock file
+yarn.lock               # Yarn lock file
+
+# Build related files & folders
+dist/                   # Build output
+build/                  # Build output
+.cache/                 # Build/cache
+coverage/               # Test coverage output
+.sass-cache/            # Sass cache
+.git/                   # Git directory (should not be in dist)
+.gitattributes          # Git attributes (should not be in dist)
+bin/                    # Binary scripts/tools
+*.zip                   # Zipped packages
+*.map                   # Source maps
+
+# Tests
+test-results/           # Playwright test results
+playwright-report/      # Playwright HTML reports
+blob-report/            # Playwright blob reports

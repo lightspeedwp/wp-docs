@@ -1,0 +1,18 @@
+# Exclude from plugin/theme distribution packages
+/.git
+/.github
+/node_modules
+/vendor
+/tests
+/bin
+/.vscode
+/.DS_Store
+/*.zip
+/*.tar.gz
+/*.log
+composer.json
+composer.lock
+package.json
+package-lock.json
+pnpm-lock.yaml
+*.map

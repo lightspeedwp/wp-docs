@@ -1,0 +1,56 @@
+{
+  "recommendations": [
+    // AI Related Extensions - Advanced AI assistance for development
+    "anthropic.claude-code",
+    "google.gemini-cli-vscode-ide-companion",
+    "google.geminicodeassist",
+    "coderabbit.coderabbit-vscode",
+    "openai.chatgpt",
+
+    // GitHub Extensions - Essential GitHub workflow tools
+    "github.codespaces",
+    "github.copilot",
+    "github.copilot-chat",
+    "github.remotehub",
+    "github.vscode-github-actions",
+    "github.vscode-pull-request-github",
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+
+    // Microsoft Extensions - Official Microsoft development tools
+    "ms-vscode-remote.remote-containers",
+    "ms-vscode-remote.remote-ssh",
+    "ms-vscode-remote.remote-ssh-edit",
+    "ms-vscode-remote.remote-wsl",
+    "ms-vscode-remote.vscode-remote-extensionpack",
+    "ms-vscode.live-server",
+    "ms-vscode.remote-explorer",
+    "ms-vscode.remote-repositories",
+    "ms-vscode.vscode-github-issue-notebooks",
+    "ms-vscode.vscode-speech",
+    "ms-vscode.wordcount",
+
+    // Dev Container Extensions - Docker and container development
+    "ms-vscode-remote.vscode-remote-extensionpack",
+
+    // Unit Testing Extensions - Automated testing tools
+    "ms-playwright.playwright",
+
+    // Linting Extensions - Code quality and formatting
+    "esbenp.prettier-vscode",
+    "davidanson.vscode-markdownlint",
+    "michelemelluso.code-beautifier",
+    "dbaeumer.vscode-eslint",
+
+    // JavaScript Testing - Jest and testing tools
+    "orta.vscode-jest",
+    "christian-kohler.npm-intellisense",
+
+    // JSON and Configuration - Enhanced JSON support
+    "zainchen.json",
+    "quicktype.quicktype",
+
+    // Core development tools
+    "editorconfig.editorconfig"
+  ]
+}

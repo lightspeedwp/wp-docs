@@ -1,0 +1,13 @@
+# Normalize line endings
+* text=auto eol=lf
+
+# Treat lock files as text
+*.lock text
+*.bat text eol=crlf
+
+# Linguist: docs and examples
+docs/** linguist-documentation
+*.md linguist-documentation
+
+# Zip-friendly export ignore
+*.zip export-ignore

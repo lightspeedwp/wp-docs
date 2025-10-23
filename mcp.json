@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    // GitHub MCP Server with full support (repos, issues, PRs, Copilot Spaces)
+    "github": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_AUTH_TYPE": "oauth"
+      }
+    },
+    // Filesystem MCP Server for local documentation access
+    "filesystem": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem", "/Users/ash/Studio/non-wordpress/wp-docs"]
+    }
+  }
+}

@@ -1,16 +1,186 @@
+# yaml-language-server: $schema=[https://coderabbit.ai/integrations/coderabbit-overrides.v2.json](https://coderabbit.ai/integrations/coderabbit-overrides.v2.json)
+
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/coderabbit-overrides.v2.json
+language: 'en-uk'
+chat:
+  auto_reply: true
 reviews:
+  # === Review Workflow Settings ===
+  status_checks:
+    required:
+      - markdownlint
+      - Run Tests
+      - ShellCheck
+      - Changelog
+      - Release
+  required_approvals: 2
+  auto_labels:
+    enabled: true
+    rules:
+      - path: 'scripts/**/*.sh'
+        label: 'shell'
+      - path: '**/*.md'
+        label: 'docs'
+      - path: 'workflows/**/*.yml'
+        label: 'ci'
+      - path: 'tests/**/*.bats'
+        label: 'test'
+      - path: 'scripts/**/*.js'
+        label: 'js'
+      - path: 'scripts/**/*.py'
+        label: 'python'
+  auto_assign:
+    enabled: true
+    reviewers:
+      - 'ashleyshaw'
+  path_filters:
+    # === Path Filters (Exclude from Review) ===
+    - '!build/**'
+    - '!dist/**'
+    - '!node_modules/**'
+    - '!.cache/**'
+    - '!.DS_Store'
+    - '!vendor/**'
+    - '!composer.lock'
+    - '!package-lock.json'
+    - '!yarn.lock'
+    - '!.phpunit.result.cache'
+    - '!.idea/**'
+    - '!*.zip'
+    - '!bin/**'
+    - '!test-results/**'
+    - '!playwright-report/**'
+    - '!blob-report/**'
+    - '!*.map'
+    # Allow markdown, config, workflows, and docs to be reviewed
+  request_changes_workflow: true # Require workflow for requesting changes
+  high_level_summary: true # Provide high-level summary in reviews
+  poem: false # Disable poem output in reviews
+  review_status: true # Show review status in output
+  collapse_walkthrough: true # Collapse walkthroughs by default
+  # === Auto Review Settings ===
+  auto_review:
+    enabled: true
+    drafts: false
+    base_branches:
+      - 'main'
+      - 'develop'
+      - 'feature/*'
+      - 'fix/*'
+      - 'update/*'
+  # === Path-Specific Review Instructions ===
   path_instructions:
-    - path: "**/*.md"
+    # 1. Copilot & AI Files
+    - path: '.github/custom-instructions.md'
       instructions: |
-        Review the Markdown documentation for:
-        - Clarity and conciseness of explanations
-        - Consistent formatting and heading structure
-        - Proper use of code blocks and inline code
-        - Correct spelling, grammar, and punctuation
-        - Accurate and up-to-date technical information
-        - Useful internal and external links
-        - Well-organized sections and logical flow
-        
-  Additional context:
-  - The repository contains documentation focused on block theme and block plug-in development topics for WordPress and related technologies.
-  - Please ensure that technical docs are developer-friendly, accurate, and up-to-date.
+        Review custom-instructions.md:
+          - Ensure the file is easy to navigate and up to date with org standards.
+          - Ensure the file is a dynamic index of all major Copilot files and instructions.
+          - Validate YAML frontmatter for completeness and accuracy.
+          - Confirm references to chatmodes.md, prompts.md, agent.md, AGENTS.md, and all **/.github/instructions/*.instructions.md files.
+          - Check for up-to-date cross-references and clear documentation of Copilot usage.
+
+early_access: true
+auto_labels:
+  enabled: true
+    - A canonical list of org wide default labels exists in this file "https://github.com/lightspeedwp/.github/blob/develop/.github/labels.yml" https://github.com/lightspeedwp/.github/blob/develop/.github/labeler.yml
+    - A set of labeler rules exist in this file "https://github.com/lightspeedwp/.github/blob/develop/.github/labeler.yml"
+auto_assign:
+  enabled: true
+  reviewers:
+    - 'ashleyshaw'
+auto_review:
+  enabled: true
+  ignore_title_keywords:
+    - 'WIP'
+    - 'DO NOT MERGE'
+    - 'DRAFT'
+  drafts: false
+  base_branches:
+    - 'main'
+    - 'develop'
+    - 'feature/*'
+
+  path_instructions:
+    - path: 'scripts/**/*.sh'
+      instructions: |
+        "Review shell scripts for:
+          - Header comments and metadata
+          - Error handling (set -euo pipefail)
+          - ShellCheck compliance
+          - Test coverage with Bats
+          - Security best practices
+          - Documentation in README"
+    - path: 'scripts/**/*.js'
+      instructions: |
+        "Review JS scripts for:
+          - ESLint compliance
+          - Modular structure
+          - Test coverage
+          - Documentation and usage examples"
+    - path: 'scripts/**/*.py'
+      instructions: |
+        "Review Python scripts for:
+          - PEP8 compliance
+          - Test coverage
+          - Inline documentation and docstrings"
+    - path: 'workflows/**/*.yml'
+      instructions: |
+        "Review workflows for:
+          - Linting and test enforcement
+          - Required status checks
+          - Use of verified Marketplace actions
+          - Documentation and maintainability"
+    - path: 'CHANGELOG.md'
+      instructions: |
+        "Review changelog for:
+          - Accurate entries for all changes
+          - Customer-facing release notes
+          - Compliance with Keep a Changelog format"
+    - path: 'README.md'
+      instructions: |
+        "Review README for:
+          - Usage instructions
+          - Automation feature documentation
+          - Test coverage and status badges
+          - Compliance with documentation standards"
+    - path: 'scripts/product_dev_project.sh'
+      instructions: |
+        "Review project automation script for GitHub ProjectV2:
+          - Ensure script supports all automatable ProjectV2 actions (create project, add fields, add items/issues, link repositories/teams, update project/fields/items/status)
+          - Validate use of helper functions for each mutation and CLI/GraphQL integration
+          - Check for modular, maintainable, and well-documented code
+          - Confirm error handling and logging for automation steps
+          - Ensure script is tested with Bats and covers edge cases
+          - Verify script updates and syncs project meta/template files as required
+          - Confirm alignment with repo governance and automation standards"
+    - path: 'scripts/**/*.sh'
+      instructions: |
+        "Review shell scripts for automation and governance:
+          - Ensure script header includes metadata (name, description, usage, author, date)
+          - Validate error handling with set -euo pipefail
+          - Check for ShellCheck compliance
+          - Confirm test coverage with Bats
+          - Review for security best practices (input validation, least privilege)
+          - Ensure documentation is provided in README or inline comments"
+    - path: '**/*.md'
+      instructions: |
+        "Review markdown files for:
+          - Clarity and conciseness
+          - Proper formatting and structure
+          - Spelling and grammar
+          - Relevant links and references"
+    - path: 'workflows/**/*.yml'
+      instructions: |
+        "Review CI/CD workflows for:
+          - Correct triggers and conditions
+          - Proper job definitions and steps
+          - Use of secrets and environment variables
+          - Compliance with best practices and security guidelines"
+    - path: 'tests/**/*.bats'
+      instructions: |
+        "Reviewbats tests for:
+          - Comprehensive test coverage
+          - Clear and descriptive test names
+          - Proper setup and teardown procedures
+          - Use of assertions and validations"
