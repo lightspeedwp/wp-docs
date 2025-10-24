@@ -405,9 +405,9 @@ describe('Fluid Spacing Documentation', () => {
         const match = line.match(/^(#{1,6})\s/);
         if (match) {
           const level = match[1].length;
-          // Heading levels shouldn't skip (e.g., h2 -> h4)
-          if (previousLevel > 0) {
-            expect(level - previousLevel).toBeLessThanOrEqual(1);
+          // Heading levels shouldn't skip upward (e.g., h2 -> h4), but can decrease
+          if (previousLevel > 0 && level > previousLevel) {
+            expect(level - previousLevel).toBe(1);
           }
           previousLevel = level;
         }
