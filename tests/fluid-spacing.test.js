@@ -1,6 +1,5 @@
 /**
  * Comprehensive tests for docs/block-themes/fluid-spacing.md
- * 
  * Tests include:
  * - JSON code block validation
  * - CSS code block validation
@@ -9,6 +8,9 @@
  * - WordPress theme.json schema compliance
  * - Markdown structure integrity
  */
+// Jest provides describe, it, expect globally
+const fs = require('fs');
+const path = require('path');
 
 const { describe, it } = require('node:test');
 const assert = require('node:assert');
