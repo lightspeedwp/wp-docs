@@ -433,9 +433,11 @@ describe('Fluid Spacing Documentation', () => {
     });
 
     it('should warn about limitations', () => {
-      const limitations = content.match(/## Limitations([\s\S]*?)---/);
-      assert.ok(limitations, 'Should have limitations section');
-      assert.ok(limitations[0].length > 50, 'Limitations should be detailed');
+     it('should warn about limitations', () => {
+      const limitationsMatch = content.match(/## Limitations([\s\S]*?)(?=\n## |$)/);
+      expect(limitationsMatch).toBeTruthy();
+      expect(limitationsMatch[0].length).toBeGreaterThan(50);
+     });
     });
   });
 
