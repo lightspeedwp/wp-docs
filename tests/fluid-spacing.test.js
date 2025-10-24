@@ -377,6 +377,8 @@ describe('Fluid Spacing Documentation', () => {
 
   describe('Code Examples Quality', () => {
     it('should have well-formatted JSON with proper indentation', () => {
+    it('should have well-formatted JSON with proper indentation', () => {
+      let validCount = 0;
       jsonBlocks.forEach((block, index) => {
         if (block.trim().length === 0) return;
         
@@ -384,13 +386,12 @@ describe('Fluid Spacing Documentation', () => {
           const parsed = JSON.parse(block);
           const reStringified = JSON.stringify(parsed, null, 2);
           JSON.parse(reStringified);
-          assert.ok(true, `JSON block ${index + 1} is properly formatted`);
+          validCount++;
         } catch (error) {
-          // Some blocks might not be complete JSON, skip them
-          return;
+          throw new Error(`JSON block ${index + 1} formatting failed: ${error.message}`);
         }
       });
-      assert.ok(true, 'JSON blocks are well formatted');
+      expect(validCount).toBeGreaterThan(0);
     });
 
     it('should use consistent spacing units (rem, px, vw)', () => {
