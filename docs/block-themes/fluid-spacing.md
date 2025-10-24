@@ -100,7 +100,7 @@ Using clamp(10px, 2vw, 40px):
 
 ---
 
-## Mobile-first `clamp()` strategy: controlling `vw` for reliable spacing
+## Mobile-first `clamp()` strategy: controlling `vw` for reliable spacing (detailed guide)
 
 ### Principle
 - The `clamp` expression is `clamp(MIN, FLUID, MAX)` — e.g. `clamp(12px, 3vw, 40px)`.
