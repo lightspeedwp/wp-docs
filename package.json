@@ -5,6 +5,9 @@
   "main": ".github/scripts/update-readme.js",
   "scripts": {
     "build": "node .github/scripts/update-readme.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "contributors:check": "all-contributors check",
@@ -29,6 +32,7 @@
   "author": "LightSpeed WordPress",
   "license": "GPL-3.0-only",
   "devDependencies": {
-    "all-contributors-cli": "^6.26.1"
+    "all-contributors-cli": "^6.26.1",
+    "jest": "^29.7.0"
   }
 }
