@@ -127,7 +127,7 @@ When implementing in block themes, consider adding these as editor hints:
 ---
 ## Font Sizes & Slugs
 
-### WordPress Default Font Size Slugs
+### Why Numeric Font Size Slugs Are Essential
 WordPress ships with four core font sizes:
 
 - `small`
