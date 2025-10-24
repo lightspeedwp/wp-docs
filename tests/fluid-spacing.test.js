@@ -72,12 +72,7 @@ describe('Fluid Spacing Documentation', () => {
 
     jsonBlocks.forEach((block, index) => {
       it(`JSON block ${index + 1} should be valid JSON`, () => {
-        try {
-          JSON.parse(block);
-          assert.ok(true, 'Valid JSON');
-        } catch (error) {
-          assert.fail(`JSON block ${index + 1} is invalid: ${error.message}\nBlock: ${block.substring(0, 100)}...`);
-        }
+        expect(() => JSON.parse(block)).not.toThrow();
       });
     });
 
