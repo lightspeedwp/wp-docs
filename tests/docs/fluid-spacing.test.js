@@ -388,7 +388,8 @@ describe('Fluid Spacing Documentation', () => {
 
     test('should not have broken markdown formatting', () => {
       // Check for common markdown issues
-      expect(docContent).not.toMatch(/\]\s\(/); // No space before (
+      // Ensure no broken link like "] ("
+      expect(docContent).not.toMatch(/\]\s+\(/); // No space before (
       expect(docContent).not.toMatch(/\*\*\s+\*\*/); // No bold formatting issues
     });
 
